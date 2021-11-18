@@ -28,24 +28,7 @@ body{
     margin-left: 65px;
   }
   
-  .logout_btn{
-    padding: 5px;
-    
-    text-decoration: none;
-    float: right;
-    margin-top: -30px;
-    margin-right: 70px;
-    border-radius: 2px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    transition: 0.5s;
-    transition-property: background;
-  }
   
-  .logout_btn:hover{
-    background: #0B87A6;
-  }
   
   .sidebar{
     
@@ -55,11 +38,11 @@ body{
     
     position: fixed;
     left: 0;
-    width: 250px;
+    width: 240px;
     height: calc(100% - 9%);
     transition: 0.5s;
     transition-property: left;
-    
+    overflow-y: auto;
   }
   
   .profile_info{
@@ -136,7 +119,7 @@ body{
   
   #check:checked ~ .sidebar a{
     font-size: 20px;
-    margin-left: 148px;
+    margin-left: 140px;
     width: 100%;
   }
   
@@ -187,6 +170,8 @@ body{
   
   .dropdown {
     position: relative;
+    
+    padding: 5px;
     
     text-decoration: none;
     float: right;
