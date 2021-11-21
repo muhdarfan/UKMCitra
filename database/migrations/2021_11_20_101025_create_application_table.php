@@ -15,12 +15,11 @@ class CreateApplicationTable extends Migration
     {
         Schema::create('application', function (Blueprint $table) {
             $table->id('application_id');
-            $table->string('reason');
-            $table->date('date');
-            $table->string('status');
-            $table->string('semester');
             $table->string('matric_no');
             $table->string('course_code');
+            $table->string('reason');
+            $table->string('status');
+            $table->string('semester');
             $table->timestamps();
         });
     }
