@@ -14023,6 +14023,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 .nav-sidebar .nav-item > .nav-link {
   position: relative;
+  padding:1rem;
 }
 .nav-sidebar .nav-item > .nav-link > .float-right {
   margin-top: -7px;

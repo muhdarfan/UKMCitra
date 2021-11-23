@@ -29,6 +29,71 @@
                         </p>
                     </a>
                 </li>
+                <!-- Student -->
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('application') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file fa-sm "></i>
+                        <p>Application</p> 
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('courses') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-list "></i>
+                        <p>Courses</p>                          
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-comment-alt "></i>
+                        <p>Feedback</p>      
+                    </a>
+                </li>
+
+                <!-- Lecturer 
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file fa-sm "></i>
+                        <p>Application</p>      
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-list "></i>
+                        <p>Courses</p>      
+                    </a>
+                </li> -->
+
+                <!-- System Manager
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-bullhorn "></i>
+                        <p>Announcement</p>      
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-list "></i>
+                        <p>Courses</p>      
+                    </a>
+                </li> 
+            <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-comment-alt "></i>
+                        <p>Feedback</p>      
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-tie "></i>
+                        <p>Lecturers</p>      
+                    </a>
+                </li> 
+            <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <i class="nav-icon fas fas fa-list "></i>
+                        <p>Users</p>      
+                    </a>
+                </li> -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

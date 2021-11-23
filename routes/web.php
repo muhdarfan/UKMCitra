@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::get('/template', function () {
     return view('template');
 });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Auth::routes();
 
