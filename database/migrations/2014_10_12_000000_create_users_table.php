@@ -13,8 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        /*
+         * 1 User (role: lecturer) has many Citra Subject
+         * 1 User (role: student) has 1 Student Information
+         */
+
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->string('matric_no')->primary();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');

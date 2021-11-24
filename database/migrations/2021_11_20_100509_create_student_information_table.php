@@ -13,12 +13,19 @@ class CreateStudentInformationTable extends Migration
      */
     public function up()
     {
+        /*
+         * One To One Relationship
+         * 1 Student has 1 Student Information
+         */
+
         Schema::create('student_information', function (Blueprint $table) {
             $table->string('matric_no')->primary();
             $table->string('student_name');
             $table->string('faculty');
             $table->integer('credit_limit');
             $table->string('phone_number');
+
+            $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

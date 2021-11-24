@@ -20,6 +20,9 @@ class CreateApplicationTable extends Migration
             $table->string('reason');
             $table->string('status');
             $table->string('semester');
+
+            $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
+            $table->foreign('course_code')->references('course_code')->on('citras')->onDelete('cascade');
             $table->timestamps();
         });
     }
