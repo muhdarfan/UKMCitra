@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeedbackTable extends Migration
+class CreateCitraTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateFeedbackTable extends Migration
      */
     public function up()
     {
-        Schema::create('feedback', function (Blueprint $table) {
-            $table->id();
-            $table->text('comment');
-            $table->string('matric_no');
-            $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
+        Schema::create('citra', function (Blueprint $table) {
+            $table->string('courseCode')->primary();
+            $table->string('courseName');
+            $table->integer('courseCredit');
+            $table->string('courseCategory');//eg.C1,C2...
+            $table->text('descriptions');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateFeedbackTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('citra');
     }
 }
