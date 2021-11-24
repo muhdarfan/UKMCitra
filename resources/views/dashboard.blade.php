@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('content')
 @section('title','Dashboard')
+@section('content')
     <!-- Default box with Title & Footer -->
     <div class="card">
         <div class="card-header">
@@ -12,7 +12,7 @@
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
                 </button>
-               
+
             </div>
         </div>
         <div class="card-body">
@@ -22,7 +22,7 @@
             electronic typesetting, remaining essentially unchanged.
         </div>
         <!-- /.card-body -->
-        
+
         <!-- /.card-footer-->
     </div>
     <!-- /.card -->

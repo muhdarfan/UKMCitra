@@ -18,12 +18,13 @@ class CreateCitraLecturerTable extends Migration
          * 1 User (role: lecturer) has many Citra Subject
          */
 
-        Schema::create('citra_lecturer', function (Blueprint $table) {
-            $table->string("matric_no")->primary();
-            $table->foreign('matric_no')->references('matric_no')->on('users');
+        Schema::create('citras_lecturer', function (Blueprint $table) {
+            $table->string("matric_no");
+            $table->string("courseCode");
 
-            //$table->foreignId('citra_id')->constrained('citras')->onDelete('cascade');
-            //$table->primary(['matric_no', 'citra_id']);
+            $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
+            $table->foreign('courseCode')->references('courseCode')->on('citras')->onDelete('cascade');
+            $table->index(['matric_no', 'courseCode']);
         });
     }
 

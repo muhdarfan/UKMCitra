@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','Page Title')
 @section('content')
     <!-- Default box with Title & Footer -->
     <div class="card">

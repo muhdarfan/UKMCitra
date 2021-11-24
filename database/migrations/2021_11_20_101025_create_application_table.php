@@ -16,13 +16,13 @@ class CreateApplicationTable extends Migration
         Schema::create('application', function (Blueprint $table) {
             $table->id('application_id');
             $table->string('matric_no');
-            $table->string('course_code');
+            $table->string('courseCode');
             $table->string('reason');
             $table->string('status');
             $table->string('semester');
 
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
-            $table->foreign('course_code')->references('course_code')->on('citras')->onDelete('cascade');
+            $table->foreign('courseCode')->references('courseCode')->on('citras')->onDelete('cascade');
             $table->timestamps();
         });
     }
