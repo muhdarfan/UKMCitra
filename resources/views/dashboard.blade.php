@@ -29,30 +29,30 @@
 
     <!-- Default box -->
     <div class="row pt-5">
-          <div class="col-lg-4 col-6 mx-auto">
-    <div class="small-box bg-info">
-              <div class="inner">
-                <h3>2</h3>
+        <div class="col-lg-4 col-6 mx-auto">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>2</h3>
 
-                <p>Total Registered Courses</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-chart-bar"></i>
-              </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-6 mx-auto">
-    <div class="small-box bg-info">
-              <div class="inner">
-                <h3>1</h3>
+                    <p>Total Registered Courses</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-6 mx-auto">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>1</h3>
 
-                <p>Total Approved Application</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-check-square"></i>
-              </div>
-              </div>
-          </div>
+                    <p>Total Approved Application</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-check-square"></i>
+                </div>
+            </div>
+        </div>
 
     </div>
 @endsection
