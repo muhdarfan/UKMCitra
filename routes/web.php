@@ -25,6 +25,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/listofcitrapage', function () {
+    return view('listofcitrapage');
+});
+
 // Route for authenticated user
 Route::middleware('auth')->group(function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
