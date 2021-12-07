@@ -10,34 +10,38 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form class="form-horizontal">
+
+    <form action="{{ route('citra.update',$citra->courseCode) }}" class="form-horizontal" method="POST">
+      @csrf
+      @method('PUT')
+
       <div class="card-body">
         <div class="form-group row">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Course Code</label>
+          <label for="coursecode" class="col-sm-2 col-form-label">Course Code</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputEmail3" placeholder="Course Code">
+            <input type="text" class="form-control" value="{{$citra->courseCode}}" id="coursecode" placeholder="Course Code">
           </div>
         </div>
         <div class="form-group row">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">Course Name</label>
+          <label for="coursename" class="col-sm-2 col-form-label">Course Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPassword3" placeholder="Course Name">
+            <input type="text" class="form-control" value="{{$citra->courseName}}" id="coursename" placeholder="Course Name">
           </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Availability</label>
+            <label for="availability" class="col-sm-2 col-form-label">Availability</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control" id="inputEmail3" placeholder="Availability">
+              <input type="number" min="1" class="form-control" id="availability" placeholder="Availability">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
-                <textarea class="form-control" rows="3" placeholder="Course Description"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Course Description">{{$citra->descriptions}}"</textarea>
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Current Student</label>
+            <label for="stuentno" class="col-sm-2 col-form-label">Current Student</label>
             <div class="col-sm-10">
               
             </div>

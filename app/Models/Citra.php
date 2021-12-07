@@ -20,6 +20,11 @@ class Citra extends Model
         'courseCategory',
         'descriptions'
     ];
+
+    public function getRouteKeyName()
+{
+    return 'courseCode';
+}
     
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Citra;
 
 class CitraController extends Controller
 {
@@ -41,12 +42,14 @@ class CitraController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Citra $citra
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Citra $citra)
     {
-        return view('citra.show',compact('citras'));
+        
+
+        return view('citra.show',compact('citra'));
     }
 
     /**
@@ -55,9 +58,9 @@ class CitraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Citra $citra)
     {
-        //
+        return view('citra.edit',compact('citra'));
     }
 
     /**
@@ -67,7 +70,7 @@ class CitraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Citra $citra)
     {
         $request->validate([
             'courseCode' => 'required',
@@ -75,6 +78,11 @@ class CitraController extends Controller
             'descriptions' => 'required',
             
         ]);
+
+        $citra->update($request->all());
+
+        return redirect()->route('citra.index')
+        ->with('success', 'Course updated successfully');
     }
 
     /**
@@ -83,9 +91,12 @@ class CitraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Citra $citra)
     {
 
+        
+        $citra->delete();
+        
         return redirect()->route('citra.index')
         ->with('success', 'Course deleted successfully');
     }
