@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Lecturer;
 
+use App\Models\Application;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
-class CitraController extends Controller
+class ApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class CitraController extends Controller
      */
     public function index()
     {
-        //
+        $application=Application::all();
+        return View::make('application.index')->with('application',$application);
+
     }
 
     /**
@@ -41,12 +45,12 @@ class CitraController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Citra $citra
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return view('citra.show',compact('citras'));
+        //
     }
 
     /**
@@ -69,12 +73,7 @@ class CitraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'courseCode' => 'required',
-            'courseName' => 'required',
-            'descriptions' => 'required',
-            
-        ]);
+        //
     }
 
     /**
@@ -85,8 +84,6 @@ class CitraController extends Controller
      */
     public function destroy($id)
     {
-
-        return redirect()->route('citra.index')
-        ->with('success', 'Course deleted successfully');
+        //
     }
 }

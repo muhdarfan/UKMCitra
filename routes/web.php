@@ -24,6 +24,9 @@ Route::get('/template', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/test', function () {
+    return view('citra.show');
+});
 
 Route::get('/listofcitrapage', function () {
     return view('listofcitrapage');
@@ -40,7 +43,7 @@ Route::middleware('auth')->group(function() {
 
     // Route for Lecturer
     Route::middleware('role:lecturer')->group(function() {
-
+        //Route::resource('application', \App\Http\Controllers\Lecturer\ApplicationController::class);
     });
 
     // Route for Student
