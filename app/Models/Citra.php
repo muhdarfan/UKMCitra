@@ -10,8 +10,8 @@ class Citra extends Model
     use HasFactory;
 
     protected $table = 'citras';
-    protected $primarykey = 'courseCode';
-    protected $keyType='string';
+    protected $primaryKey = 'courseCode';
+    protected $keyType = 'string';
 
     protected $fillable = [
         'courseCode',
@@ -22,10 +22,10 @@ class Citra extends Model
     ];
 
     public function getRouteKeyName()
-{
-    return 'courseCode';
-}
-    
+    {
+        return 'courseCode';
+    }
+
 
 }
 

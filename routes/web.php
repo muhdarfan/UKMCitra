@@ -29,7 +29,7 @@ Route::get('/test', function () {
 });
 
 Route::get('/listofcitrapage', function () {
-    return view('listofcitrapage');
+    return view('citra.index');
 });
 
 // Route for authenticated user

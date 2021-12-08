@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Citra;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +23,8 @@ class CitraSeeder extends Seeder
             'courseCategory' => 'C4',
             'descriptions' => ' Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry'
-            
         ]);
+
+        Citra::factory()->count(10)->create();
     }
 }

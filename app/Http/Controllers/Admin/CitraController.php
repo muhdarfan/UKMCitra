@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Citra;
+use Illuminate\Support\Facades\DB;
 
 class CitraController extends Controller
 {
@@ -16,6 +17,11 @@ class CitraController extends Controller
     public function index()
     {
         //
+        //$citras = DB::table('citras');
+        $citras = Citra::all();
+        return view('citra.index', [
+            'citras' => Citra::paginate(5)
+        ]);
     }
 
     /**
@@ -47,8 +53,6 @@ class CitraController extends Controller
      */
     public function show(Citra $citra)
     {
-        
-
         return view('citra.show',compact('citra'));
     }
 
@@ -76,13 +80,11 @@ class CitraController extends Controller
             'courseCode' => 'required',
             'courseName' => 'required',
             'descriptions' => 'required',
-            
         ]);
 
         $citra->update($request->all());
 
-        return redirect()->route('citra.index')
-        ->with('success', 'Course updated successfully');
+        return redirect()->route('citra.index')->with('success', 'Course updated successfully');
     }
 
     /**
@@ -93,10 +95,8 @@ class CitraController extends Controller
      */
     public function destroy(Citra $citra)
     {
-
-        
         $citra->delete();
-        
+
         return redirect()->route('citra.index')
         ->with('success', 'Course deleted successfully');
     }
