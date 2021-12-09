@@ -48,9 +48,9 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Application $application)
     {
-        //
+        return view('application.show',compact('application'));
     }
 
     /**
@@ -59,7 +59,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Application $application)
     {
         //
     }
@@ -71,7 +71,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Application $application)
     {
         //
     }
@@ -82,7 +82,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Application $application)
     {
         //
     }

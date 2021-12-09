@@ -15,18 +15,23 @@
                     <th>Matric No.</th>
                     <th>Applicant's Name</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th width="280px">Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                      @foreach($application as $key => $value)
+                 @foreach($application as $application)
                   <tr>
-                    <td>{{$value->courseCode}}</td>
-                    <td>I{{$value->matric_no}}
+                    <td>{{$application->courseCode}}</td>
+                    <td>{{$application->matric_no}}</td>
+                    
+                    <td>{{$application->courseCode}}</td>
+                    <td> {{$application->status}}</td>
+                    <td >
+                      <a class="btn btn-info mr-2" href="{{ route('application.show',$application->application_id) }}">View</a>
+                      <a class="btn btn-success mr-2" href="">Approve</a>
+                      <a class="btn btn-danger" href="">Reject</a>
                     </td>
-                    <td>{{$value->courseCode}}</td>
-                    <td> {{$value->status}}</td>
-                    <td>X</td>
+                    
                   </tr>
                   @endforeach
                  

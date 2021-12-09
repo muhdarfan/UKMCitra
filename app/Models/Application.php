@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     use HasFactory;
+
+    protected $table = 'application';
+    protected $primarykey = 'application_id';
+
+    protected $fillable = [
+        
+        
+    ];
+
+    public function getRouteKeyName()
+{
+    return 'application_id';
+}
 }

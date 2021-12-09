@@ -32,6 +32,8 @@
                             </p>
                         </a>
                     </li>
+                    @if(\Illuminate\Support\Facades\Auth::user()->role === 'student')
+                    <li class="nav-header">STUDENT</li>
                     <!-- Student -->
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}"
@@ -54,6 +56,7 @@
                             <p>Feedback</p>
                         </a>
                     </li>
+                    @endif
 
                     @if(\Illuminate\Support\Facades\Auth::user()->role === 'lecturer')
                         <li class="nav-header">LECTURER</li>

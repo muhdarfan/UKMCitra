@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function() {
 
     // Route for Lecturer
     Route::middleware('role:lecturer')->group(function() {
-        //Route::resource('application', \App\Http\Controllers\Lecturer\ApplicationController::class);
+        Route::resource('application', \App\Http\Controllers\Lecturer\ApplicationController::class);
     });
 
     // Route for Student

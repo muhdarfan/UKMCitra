@@ -42,7 +42,7 @@
                 <div class="form-group row">
                     <label for="coursecredit" class="col-sm-2 col-form-label">Course Credit</label>
                     <div class="col-sm-10">
-                        <input type="number" min="1" class="form-control" value="{{ $citra->courseCredit }}" id="coursecredit"
+                        <input type="number" min="1" max='3' class="form-control" value="{{ $citra->courseCredit }}" id="coursecredit"
                                name="courseCredit" placeholder="Course Credit" />
                     </div>
                 </div>
@@ -52,12 +52,12 @@
                     <label for="coursecategory" class="col-sm-2 col-form-label">Course Category</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="coursecategory" name="courseCategory">
-                            <option value="">C1</option>
-                            <option value="">C2</option>
-                            <option value="">C3</option>
-                            <option value="">C4</option>
-                            <option value="">C5</option>
-                            <option value="">C6</option>
+                            <option value = "C1" @if($citra->courseCategory=='C1')? selected : null @endif>C1</option>
+                            <option value = "C2" @if($citra->courseCategory=='C2')? selected : null @endif">C2</option>
+                            <option value = "C3" @if($citra->courseCategory=='C3')? selected : null @endif">C3</option>
+                            <option value = "C4" @if($citra->courseCategory=='C4')? selected : null @endif">C4</option>
+                            <option value = "C5" @if($citra->courseCategory=='C5')? selected : null @endif">C5</option>
+                            <option value = "C6" @if($citra->courseCategory=='C6')? selected : null @endif">C6</option>
                         </select>
                     </div>
                 </div>
