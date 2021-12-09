@@ -34,7 +34,13 @@
                 <div class="inner">
                     <h3>2</h3>
 
+                    @if (Auth::user()->role == 'student')
                     <p>Total Registered Courses</p>
+                    @elseif (Auth::user()->role == 'lecturer')
+                    <p>Total Submitted Application</p>
+                    @elseif (Auth::user()->role == 'admin')
+                    <p>Total Submitted Feedback</p>
+                    @endif
                 </div>
                 <div class="icon">
                     <i class="fas fa-chart-bar"></i>
@@ -46,7 +52,13 @@
                 <div class="inner">
                     <h3>1</h3>
 
+                    @if (Auth::user()->role == 'student')
                     <p>Total Approved Application</p>
+                    @elseif (Auth::user()->role == 'lecturer')
+                    <p>Total Approved Application</p>
+                    @elseif (Auth::user()->role == 'admin')
+                    <p>Total Feedback Today</p>
+                    @endif
                 </div>
                 <div class="icon">
                     <i class="fas fa-check-square"></i>

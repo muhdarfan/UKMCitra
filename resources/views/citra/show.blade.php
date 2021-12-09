@@ -13,10 +13,10 @@
     </div>
     <div class="card-body">
         <div class="card-body">
-        <img src="{{ asset('images/logo_ukm.png') }}" class="center-block d-block mx-auto img-fluid img-thumbnail" alt="Italian Trulli">
+        <img src="{{ asset('images/img_course.png') }}" class="center-block d-block mx-auto img-fluid img-thumbnail" alt="Italian Trulli" width="600" height="500">
         </div>
         
-        {{$citra->descriptions}}
+        <p class="text-justify">{{$citra->descriptions}}</p>
     </div>
     <!-- /.card-body -->
     

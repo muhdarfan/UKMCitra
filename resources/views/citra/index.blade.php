@@ -3,9 +3,12 @@
 @section('title','Citra Courses')
 @section('content')
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <h5><i class="icon fas fa-check"></i> Success!</h5>
             <p>{{ $message }}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
         </div>
     @endif
 

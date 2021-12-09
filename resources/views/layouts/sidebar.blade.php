@@ -23,18 +23,20 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
+                    
+                    @if(\Illuminate\Support\Facades\Auth::user()->role === 'student')
+                    <li class="nav-header">STUDENT</li>
+                    <!-- Student -->
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}"
-                           class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+                           class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Dashboard
                             </p>
                         </a>
                     </li>
-                    @if(\Illuminate\Support\Facades\Auth::user()->role === 'student')
-                    <li class="nav-header">STUDENT</li>
-                    <!-- Student -->
+
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}"
                            class="nav-link {{ request()->is('application') ? 'active' : '' }}">
@@ -63,7 +65,17 @@
                         <!-- Lecturer -->
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}"
-                               class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                               class="nav-link {{ request()->is('home') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('application.index') }}"
+                               class="nav-link {{ request()->is('application*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-file fa-sm "></i>
                                 <p>Application</p>
                             </a>
@@ -81,6 +93,16 @@
                         <li class="nav-header">ADMIN</li>
 
                         <!-- System Manager -->
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}"
+                               class="nav-link {{ request()->is('home') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}"
                                class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
