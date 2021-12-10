@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function() {
     // Route for System Admin
     Route::middleware('role:admin')->group(function() {
         Route::resource('citra', \App\Http\Controllers\Admin\CitraController::class);
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     });
 
     // Route for Lecturer
