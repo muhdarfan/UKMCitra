@@ -26,6 +26,11 @@ class Citra extends Model
         return 'courseCode';
     }
 
+    public function application()
+    {
+        return $this->belongsTo(Application::class,'courseCode');
+    }
+
 
 }
 

@@ -21,8 +21,8 @@
                     <th width="20%">Course Code</th>
                     <th>Matric No.</th>
                     <th>Applicant's Name</th>
-                    <th>Status</th>
-                    <th width=20%>Action</th>
+                    <th style="width: 8%" class="text-center">Status</th>
+                    <th width=25%>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -31,8 +31,8 @@
                     <td>{{$application->courseCode}}</td>
                     <td>{{$application->matric_no}}</td>
                     
-                    <td>{{$application->courseCode}}</td>
-                    <td> {{$application->status}}</td>
+                    <td>{{$application->user->name}}</td>
+                    <td class="text-center"> <span class="badge badge-warning">{{$application->status}}</span></td>
                     <td >
                       <a class="btn bg-gradient-primary mr-2" href="{{ route('application.show',$application->application_id) }}">View</a>
                       <a class="btn bg-gradient-success mr-2" href="">Approve</a>

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Citra;
 
 class Application extends Model
 {
@@ -21,4 +23,14 @@ class Application extends Model
 {
     return 'application_id';
 }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'matric_no');
+    }
+
+    public function citra()
+    {
+        return $this->hasMany(Citra::class);
+    }
 }

@@ -5,7 +5,7 @@
 
 <div class="card card-info">
     <div class="card-header">
-      <h3 class="card-title">{{$application->courseCode}}</h3>
+      <h3 class="card-title">{{$application->courseCode}} - Student Information</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -13,24 +13,32 @@
     <form action="" class="form-horizontal" method="POST">
       @csrf
      
+      
 
       <div class="card-body">
+        
         <div class="form-group row">
-          <label for="coursecode" class="col-sm-2 col-form-label">Course Code</label>
+          <label for="name" class="col-sm-2 col-form-label">Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" value="" id="coursecode" placeholder="Course Code">
+            <input type="text" class="form-control" value="{{$application->user->name}}" id="name" placeholder="Name" readonly>
           </div>
         </div>
         <div class="form-group row">
-          <label for="coursename" class="col-sm-2 col-form-label">Course Name</label>
+          <label for="matric" class="col-sm-2 col-form-label">Matric Number</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" value="" id="coursename" placeholder="Course Name">
+            <input type="text" class="form-control" value="{{$application->matric_no}}" id="matric" placeholder="Matric Number" readonly>
           </div>
         </div>
         <div class="form-group row">
-            <label for="availability" class="col-sm-2 col-form-label">Availability</label>
+            <label for="faculty" class="col-sm-2 col-form-label">Faculty</label>
             <div class="col-sm-10">
-              <input type="number" min="1" class="form-control" id="availability" placeholder="Availability">
+              <input type="text"  class="form-control" id="faculty" placeholder="Faculty" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-10">
+              <input type="text"  class="form-control" value="{{$application->user->phone}}" id="phone" placeholder="Availability" readonly>
             </div>
           </div>
           <div class="form-group row">
@@ -49,11 +57,7 @@
         
       </div>
       <!-- /.card-body -->
-      <div class="card-footer">
-        <button type="submit" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-info float-right">Update</button>
-      </div>
-      <!-- /.card-footer -->
+     
     </form>
   </div>
   <!-- /.card -->
