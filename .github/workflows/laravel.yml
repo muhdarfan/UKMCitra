@@ -38,9 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: action/checkout@v2
-    - name: Setup Node.js
-      uses: action/setup-node@v2-beta
+    - uses: actions/checkout@v2
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.5.0
       with:
         node-version: '12'
         check-latest: true
@@ -55,8 +55,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Deployment
-        uses: appleboy/ssh-action@main
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.4
         
         with:
           host: ${{ secrets.SSH_HOST }}
