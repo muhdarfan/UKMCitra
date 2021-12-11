@@ -65,6 +65,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           script: |
             cd /var/www/ukmcs
+            php artisan down --message "The app is being updated. Please try again in a minute. Thank you for your patience!"
             git checkout -f
             git pull
+            php artisan up
 
