@@ -25,9 +25,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->role }}</td>
                         <td class="text-center">
-                            <form action="{{ route('user.destroy', $user->matric_no) }}" method="POST">
-                                <a href="{{ route('user.show', $user->matric_no) }}" class="btn bg-gradient-primary">Detail</a>
-                                <a href="{{ route('user.edit', $user->matric_no) }}"
+                            <form action="{{ route('users.destroy', $user->matric_no) }}" method="POST">
+                                <a href="{{ route('users.show', $user->matric_no) }}" class="btn bg-gradient-primary">Detail</a>
+                                <a href="{{ route('users.edit', $user->matric_no) }}"
                                    class="btn bg-gradient-warning">Edit</a>
 
                                 @csrf
