@@ -28,16 +28,19 @@
                   <tbody>
                  @foreach($application as $application)
                   <tr>
-                    <td>{{$application->courseCode}}</td>
-                    <td>{{$application->matric_no}}</td>
+                    <td class="align-middle">{{$application->courseCode}}</td>
+                    <td class="align-middle">{{$application->matric_no}}</td>
                     
-                    <td>{{$application->user->name}}</td>
-                    <td class="text-center"> <span class="badge badge-warning">{{$application->status}}</span></td>
-                    <td >
-                      <a class="btn bg-gradient-primary mr-2" href="{{ route('application.show',$application->application_id) }}">View</a>
-                      <a class="btn bg-gradient-success mr-2" href="">Approve</a>
-                      <a class="btn bg-gradient-danger" href="">Reject</a>
+                    <td class="align-middle">{{$application->user->name}}</td>
+                    <td class="text-center align-middle"> <span class="badge badge-warning">{{$application->status}}</span></td>
+                    <td class="align-middle">
+                      
+                      <a class="btn bg-gradient-primary mr-2" href="{{ route('application.edit',$application->application_id) }}">View</a>
+                      <a  class="btn bg-gradient-success mr-2" name="act" value={{$application->application_id}} >Approve</a>
+                      <a  class="btn bg-gradient-danger" name="deact" value={{$application->application_id}} >Reject</a>
+                     
                     </td>
+                  
                     
                   </tr>
                   @endforeach

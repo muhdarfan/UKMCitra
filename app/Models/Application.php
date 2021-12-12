@@ -31,6 +31,6 @@ class Application extends Model
 
     public function citra()
     {
-        return $this->hasMany(Citra::class);
+        return $this->belongsTo(Citra::class,'courseCode');
     }
 }

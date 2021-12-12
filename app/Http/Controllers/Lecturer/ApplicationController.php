@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Lecturer;
 
 use App\Models\Application;
+use App\Models\StudentInformation;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class ApplicationController extends Controller
@@ -16,11 +19,12 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        $application=Application::all();
+        $lectId=Auth::user()->matric_no;
+        $application = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
+              		->paginate(5);
+        //$application=Application::all();
         
-        return view('application.index', [
-            'application' => Application::paginate(5)
-        ]);
+        return view('application.index')->with('application', $application);
 
     }
 
@@ -51,10 +55,12 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Application $application)
+    public function show()
     {
-        
-        return view('application.show',compact('application'));
+        $data = Application::join('users', 'users.matric_no', '=', 'application.matric_no')
+              		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
+              		->first();
+        return view('application.show')->with('data',$data);
     }
 
     /**
@@ -63,9 +69,12 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Application $application)
+    public function edit()
     {
-        return view('application.edit',compact('citra'));
+        $data = Application::join('users', 'users.matric_no', '=', 'application.matric_no')
+              		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
+              		->first();
+        return view('application.edit')->with('data',$data);
     }
 
     /**
@@ -77,7 +86,10 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, Application $application)
     {
-        //
+       
+        
+
+        
     }
 
     /**
