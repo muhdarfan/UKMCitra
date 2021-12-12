@@ -34,11 +34,13 @@
                     <td class="align-middle">{{$application->user->name}}</td>
                     <td class="text-center align-middle"> <span class="badge badge-warning">{{$application->status}}</span></td>
                     <td class="align-middle">
-                      
-                      <a class="btn bg-gradient-primary mr-2" href="{{ route('application.edit',$application->application_id) }}">View</a>
-                      <a  class="btn bg-gradient-success mr-2" name="act" value={{$application->application_id}} >Approve</a>
-                      <a  class="btn bg-gradient-danger" name="deact" value={{$application->application_id}} >Reject</a>
-                     
+                      {{Form::open(array('url'=>'application/update','method'=>'post','class'=>'form-login'))}}
+                      <input type="hidden" name="_method" value="PUT">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <a class="btn bg-gradient-primary mr-1" href="{{ route('application.edit',$application->application_id) }}">View</a>
+                      <button  class="btn bg-gradient-success mr-1" name="act" value="{{$application->application_id}}" >Approve</button>
+                      <button  class="btn bg-gradient-danger" name="deact" value="{{$application->application_id}}" >Reject</button>
+                      {{Form::close()}}
                     </td>
                   
                     

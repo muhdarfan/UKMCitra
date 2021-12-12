@@ -15,7 +15,7 @@ class Application extends Model
     protected $primarykey = 'application_id';
 
     protected $fillable = [
-        
+        'status'
         
     ];
 

@@ -21,14 +21,14 @@
                 <tbody>
                 @foreach($users as $user)
                     <tr>
-                        <td>{{ $user->matric_no }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->role }}</td>
-                        <td class="text-center">
+                        <td class="align-middle">{{ $user->matric_no }}</td>
+                        <td class="align-middle">{{ $user->name }}</td>
+                        <td class="align-middle">{{ $user->role }}</td>
+                        <td class="align-middle" class="text-center">
                             <form action="{{ route('users.destroy', $user->matric_no) }}" method="POST">
-                                <a href="{{ route('users.show', $user->matric_no) }}" class="btn bg-gradient-primary">Detail</a>
+                                <a href="{{ route('users.show', $user->matric_no) }}" class="btn bg-gradient-primary mr-1">Detail</a>
                                 <a href="{{ route('users.edit', $user->matric_no) }}"
-                                   class="btn bg-gradient-warning">Edit</a>
+                                   class="btn bg-gradient-warning mr-1">Edit</a>
 
                                 @csrf
                                 @method('DELETE')

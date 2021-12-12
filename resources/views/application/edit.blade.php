@@ -76,8 +76,12 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer">
-        <button type="submit" class="btn bg-gradient-danger float-right mr-2">Reject</button>
-        <button type="submit" class="btn bg-gradient-success float-right mr-2">Approve</button>
+        {{Form::open(array('url'=>'application/update','method'=>'post','class'=>'form-login'))}}
+              <input type="hidden" name="_method" value="PUT">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <button  class="btn bg-gradient-danger float-right mr-2" name="deact" value="{{$data->application_id}}">Reject</button>
+        <button  class="btn bg-gradient-success float-right mr-2" name="act" value="{{$data->application_id}}">Approve</button>
+        {{Form::close()}}
     </div>
      
     </form>

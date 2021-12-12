@@ -132,8 +132,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dashboard') }}"
-                               class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                            <a href="{{ route('users.index') }}"
+                               class="nav-link {{ request()->is('users') ? 'active' : '' }}">
                                 <i class="nav-icon fas fas fa-list "></i>
                                 <p>Users</p>
                             </a>

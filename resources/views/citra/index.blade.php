@@ -32,15 +32,15 @@
                 <tbody>
                 @foreach($citras as $citra)
                     <tr>
-                        <td>{{ $citra->courseCode }}</td>
-                        <td>{{ $citra->courseName }}</td>
-                        <td>{{ $citra->courseCredit }}</td>
-                        <td>{{ $citra->courseCategory }}</td>
-                        <td class="text-center">
+                        <td class="align-middle">{{ $citra->courseCode }}</td>
+                        <td class="align-middle">{{ $citra->courseName }}</td>
+                        <td class="align-middle">{{ $citra->courseCredit }}</td>
+                        <td class="align-middle">{{ $citra->courseCategory }}</td>
+                        <td class="align-middle" class="text-center">
                             <form action="{{ route('citra.destroy', $citra->courseCode) }}" method="POST">
-                                <a href="{{ route('citra.show', $citra->courseCode) }}" class="btn bg-gradient-primary">Detail</a>
+                                <a href="{{ route('citra.show', $citra->courseCode) }}" class="btn bg-gradient-primary mr-1">Detail</a>
                                 <a href="{{ route('citra.edit', $citra->courseCode) }}"
-                                   class="btn bg-gradient-warning">Edit</a>
+                                   class="btn bg-gradient-warning mr-1">Edit</a>
 
                                 @csrf
                                 @method('DELETE')

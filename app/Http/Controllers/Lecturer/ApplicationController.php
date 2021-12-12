@@ -84,11 +84,18 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Application $application)
+    public function update(Request $request, $id)
     {
        
-        
-
+        if(isset($request->act)) { //if you click activate button, update accordingly
+            $appId = $request->act; 
+            Application::where('application_id', $appId )->update(['status' => 'APPROVED']);
+            
+          }if(isset($request->deact)) { //if you click deactivate button, update accordingly
+            $appId = $request->deact;
+            Application::where('application_id', $appId )->update(['status' => 'REJECTED']);
+          }
+          return redirect()->route('application.index')->with('success', 'Application updated successfully');
         
     }
 
