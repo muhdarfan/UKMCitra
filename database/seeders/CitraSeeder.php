@@ -21,6 +21,7 @@ class CitraSeeder extends Seeder
             'courseName' => 'ASAS REKA BENTUK GRAFIK',
             'courseCredit' => 2,
             'courseCategory' => 'C4',
+            'courseAvailability' => 40,
             'descriptions' => ' Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry'
         ]);

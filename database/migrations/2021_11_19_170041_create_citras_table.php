@@ -16,8 +16,9 @@ class CreateCitrasTable extends Migration
         Schema::create('citras', function (Blueprint $table) {
             $table->string('courseCode')->primary();
             $table->string('courseName');
-            $table->integer('courseCredit');
+            $table->unsignedInteger('courseCredit');
             $table->string('courseCategory');//eg.C1,C2...
+            $table->unsignedInteger('courseAvailability');
             $table->text('descriptions');
             $table->timestamps();
         });

@@ -25,30 +25,25 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-    @stack('styles')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition layout-top-nav">
 <div class="wrapper">
-@include('layouts.header')
 
-@include('layouts.sidebar')
-<!-- Content Wrapper. Contains page content -->
+    @include('layouts.header-basic')
+
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">
-                            @yield('title', 'Page Title')
-                            <small>@yield('subtitle')</small>
-                        </h1>
+                        <h1 class="m-0"> {{ $title ?? 'Page Title' }} {{ $subtitle ?? '' }}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">@yield('title', 'Page Title')</li>
+                            <li class="breadcrumb-item active">{{ $title ?? 'Page Title' }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -58,7 +53,7 @@
 
         <!-- Main content -->
         <div class="content">
-            <div class="container-fluid">
+            <div class="container">
                 @yield('content')
             </div><!-- /.container-fluid -->
         </div>
@@ -66,13 +61,15 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('layouts.footer')
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </footer>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-@stack('scripts')
 </body>
 </html>

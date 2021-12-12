@@ -18,6 +18,7 @@ class CitraFactory extends Factory
             'courseName' => $this->faker->unique()->word(),
             'courseCredit' => $this->faker->numberBetween(1, 3),
             'courseCategory' => 'C' . $this->faker->numberBetween(1, 6),
+            'courseAvailability' => $this->faker->numberBetween(0, 100),
             'descriptions' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry'
         ];

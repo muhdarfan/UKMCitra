@@ -8,9 +8,20 @@
             <p>{{ $message }}</p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-              </button>
+            </button>
         </div>
     @endif
+
+    <div class="row mb-2">
+        <div class="col-12">
+            <a class="btn btn-app bg-gradient-warning disabled float-right">
+                <i class="fas fa-cloud-upload-alt"></i> Import
+            </a>
+            <a href="{{ route('citra.create') }}" class="btn btn-app bg-gradient-info float-right">
+                <i class="fas fa-plus"></i> Add
+            </a>
+        </div>
+    </div>
 
     <!-- Default data table -->
     <div class="card">
@@ -30,6 +41,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                {{ count($citras) < 1 ? "No data to be displayed." : '' }}
                 @foreach($citras as $citra)
                     <tr>
                         <td class="align-middle">{{ $citra->courseCode }}</td>
@@ -38,7 +50,8 @@
                         <td class="align-middle">{{ $citra->courseCategory }}</td>
                         <td class="align-middle" class="text-center">
                             <form action="{{ route('citra.destroy', $citra->courseCode) }}" method="POST">
-                                <a href="{{ route('citra.show', $citra->courseCode) }}" class="btn bg-gradient-primary mr-1">Detail</a>
+                                <a href="{{ route('citra.show', $citra->courseCode) }}"
+                                   class="btn bg-gradient-primary mr-1">Detail</a>
                                 <a href="{{ route('citra.edit', $citra->courseCode) }}"
                                    class="btn bg-gradient-warning mr-1">Edit</a>
 

@@ -24,7 +24,7 @@ class CreateCitraLecturerTable extends Migration
 
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
             $table->foreign('courseCode')->references('courseCode')->on('citras')->onDelete('cascade');
-            $table->index(['matric_no', 'courseCode']);
+            $table->primary(['matric_no', 'courseCode']);
         });
     }
 

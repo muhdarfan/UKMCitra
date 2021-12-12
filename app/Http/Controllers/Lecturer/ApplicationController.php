@@ -23,8 +23,8 @@ class ApplicationController extends Controller
         $application = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
               		->paginate(5);
         //$application=Application::all();
-        
-        return view('application.index')->with('application', $application);
+
+        return view('lecturer.application.index')->with('application', $application);
 
     }
 
@@ -60,7 +60,7 @@ class ApplicationController extends Controller
         $data = Application::join('users', 'users.matric_no', '=', 'application.matric_no')
               		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
               		->first();
-        return view('application.show')->with('data',$data);
+        return view('lecturer.application.show')->with('data',$data);
     }
 
     /**
@@ -74,7 +74,7 @@ class ApplicationController extends Controller
         $data = Application::join('users', 'users.matric_no', '=', 'application.matric_no')
               		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
               		->first();
-        return view('application.edit')->with('data',$data);
+        return view('lecturer.application.edit')->with('data',$data);
     }
 
     /**
@@ -86,17 +86,21 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+
         if(isset($request->act)) { //if you click activate button, update accordingly
-            $appId = $request->act; 
+            $appId = $request->act;
             Application::where('application_id', $appId )->update(['status' => 'APPROVED']);
-            
+
           }if(isset($request->deact)) { //if you click deactivate button, update accordingly
             $appId = $request->deact;
             Application::where('application_id', $appId )->update(['status' => 'REJECTED']);
           }
           return redirect()->route('application.index')->with('success', 'Application updated successfully');
-        
+
+
+
+
+
     }
 
     /**

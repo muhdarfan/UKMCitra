@@ -26,10 +26,11 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"
+      style="background: url({{ asset('images/bg.png') }});background-repeat: no-repeat;background-size: 100% 100%;">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>UKM</b>Citra</a>
+        <b>UKM</b>Citra
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -71,12 +72,28 @@
                     </span>
                     @enderror
                 </div>
+
                 <div class="row">
                     <div class="offset-8 col-4">
                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                     </div>
                 </div>
             </form>
+
+            @if(\Illuminate\Support\Facades\App::environment('local'))
+                <div class="social-auth-links text-center mb-3">
+                    <p>- DEVELOPER ACTION -</p>
+                    <a href="{{ route('dev_login', 'student') }}" class="btn btn-block btn-primary">
+                        <i class="fas fa-user mr-2"></i> Sign in as Student
+                    </a>
+                    <a href="{{ route('dev_login', 'lecturer') }}" class="btn btn-block btn-info">
+                        <i class="fas fa-chalkboard-teacher mr-2"></i> Sign in as Lecturer
+                    </a>
+                    <a href="{{ route('dev_login', 'admin') }}" class="btn btn-block btn-danger">
+                        <i class="fas fa-user-shield mr-2"></i> Sign in as Admin
+                    </a>
+                </div>
+            @endif
         </div>
         <!-- /.login-card-body -->
     </div>

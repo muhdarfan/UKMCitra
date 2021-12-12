@@ -13,43 +13,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+if (\Illuminate\Support\Facades\App::environment('local')) {
+    Route::get('/signin/{as}', function ($as) {
+        $user = \App\Models\User::where('role', $as)->first();
+
+        if (!$user)
+            return redirect()->route('login');
+
+        Auth::login($user);
+        return redirect()->route('dashboard')->with('message', "You are logged in as `{$as}`");
+    })->name('dev_login');
+}
+
 Route::get('/', function () {
     return redirect("/login");
 });
 
-Route::get('/template', function () {
+Route::get('/history', function () {
     return view('template');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-Route::get('/test', function () {
-    return view('citra.show');
-});
-
-Route::get('/listofcitrapage', function () {
-    return view('citra.index');
-});
-
 // Route for authenticated user
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
     // Route for System Admin
-    Route::middleware('role:admin')->group(function() {
+    Route::middleware('role:admin')->group(function () {
         Route::resource('citra', \App\Http\Controllers\Admin\CitraController::class);
+        Route::resource('citra.lecturer', \App\Http\Controllers\Admin\CitraLecturer::class)->except(['show', 'edit', 'update']);
+        Route::resource('feedback', \App\Http\Controllers\FeedbackController::class)->except(['create', 'store']);
         Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     });
 
     // Route for Lecturer
-    Route::middleware('role:lecturer')->group(function() {
+    Route::middleware('role:lecturer')->group(function () {
         Route::resource('application', \App\Http\Controllers\Lecturer\ApplicationController::class);
     });
 
     // Route for Student
-    Route::middleware('role:student')->group(function() {
+    Route::middleware('role:student')->group(function () {
+        Route::get('/feedback_form', [\App\Http\Controllers\FeedbackController::class, 'create'])->name('user_feedback');
+        Route::post('/feedback_form', [\App\Http\Controllers\FeedbackController::class, 'store'])->name('user_feedback_store');
+    });
 
+    // Route for ajax
+    Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
+        Route::post('search_lecturer', [\App\Http\Controllers\Admin\CitraController::class, 'search'])->name('find_lecturer');
+        //Route::post('assign_lecturer', [\App\Http\Controllers\Admin\CitraController::class, 'assignLecturer'])->name('assign_lecturer');
     });
 });
 

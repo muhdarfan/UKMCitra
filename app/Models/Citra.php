@@ -26,11 +26,14 @@ class Citra extends Model
         return 'courseCode';
     }
 
+    public function lecturers() {
+        return $this->belongsToMany(User::class, 'citras_lecturer', 'courseCode', 'matric_no');
+    }
+
     public function application()
     {
         return $this->hasMany(Application::class);
     }
-
 
 }
 

@@ -23,7 +23,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    
+
                     @if(\Illuminate\Support\Facades\Auth::user()->role === 'student')
                     <li class="nav-header">STUDENT</li>
                     <!-- Student -->
@@ -52,8 +52,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
-                           class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                        <a href="{{ route('user_feedback') }}"
+                           class="nav-link {{ request()->is('feedback*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-comment-alt "></i>
                             <p>Feedback</p>
                         </a>
@@ -105,7 +105,7 @@
 
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}"
-                               class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                               class="nav-link {{ request()->is('announcement*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-bullhorn "></i>
                                 <p>Announcement</p>
                             </a>
@@ -118,22 +118,16 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dashboard') }}"
-                               class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                            <a href="{{ route('feedback.index') }}"
+                               class="nav-link {{ request()->is('feedback*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-comment-alt "></i>
                                 <p>Feedback</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard') }}"
-                               class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user-tie "></i>
-                                <p>Lecturers</p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}"
-                               class="nav-link {{ request()->is('users') ? 'active' : '' }}">
+                               class="nav-link {{ request()->is('users*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fas fa-list "></i>
                                 <p>Users</p>
                             </a>

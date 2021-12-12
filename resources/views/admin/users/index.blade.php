@@ -25,18 +25,7 @@
                         <td class="align-middle">{{ $user->name }}</td>
                         <td class="align-middle">{{ $user->role }}</td>
                         <td class="align-middle" class="text-center">
-                            <form action="{{ route('users.destroy', $user->matric_no) }}" method="POST">
-                                <a href="{{ route('users.show', $user->matric_no) }}" class="btn bg-gradient-primary mr-1">Detail</a>
-                                <a href="{{ route('users.edit', $user->matric_no) }}"
-                                   class="btn bg-gradient-warning mr-1">Edit</a>
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn bg-gradient-danger"
-                                        onclick="return confirm('Are you sure want to delete this user?');">Delete
-                                </button>
-                            </form>
+                            <a href="{{ route('users.show', $user->matric_no) }}" class="btn bg-gradient-primary mr-1">Detail</a>
                         </td>
                     </tr>
                 @endforeach

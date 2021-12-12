@@ -15,8 +15,9 @@ class CreateFeedbackTable extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->text('comment');
             $table->string('matric_no');
+            $table->text('comment');
+
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

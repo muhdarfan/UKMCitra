@@ -15,10 +15,11 @@ class CreateApplicationTable extends Migration
     {
         Schema::create('application', function (Blueprint $table) {
             $table->id('application_id');
+            $table->string('session')->nullable();
             $table->string('matric_no');
             $table->string('courseCode');
             $table->string('reason');
-            $table->string('status');
+            $table->enum('status', ['approved', 'rejected', 'pending'])->default('pending');
             $table->string('semester');
 
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
