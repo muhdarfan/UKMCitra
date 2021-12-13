@@ -18,6 +18,7 @@ class Citra extends Model
         'courseName',
         'courseCredit',
         'courseCategory',
+        'courseAvailability',
         'descriptions'
     ];
 

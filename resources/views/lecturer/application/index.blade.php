@@ -4,9 +4,12 @@
 @section('content')
 
 @if ($message = Session::get('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert"">
             <h5><i class="icon fas fa-check"></i> Success!</h5>
             <p>{{ $message }}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
         </div>
     @endif
             <div class="card">
@@ -31,8 +34,11 @@
                     <td class="align-middle">{{$application->courseCode}}</td>
                     <td class="align-middle">{{$application->matric_no}}</td>
                     
-                    <td class="align-middle">{{$application->user->name}}</td>
-                    <td class="text-center align-middle"> <span class="badge badge-warning">{{$application->status}}</span></td>
+                    <td class="align-middle">{{$application->student_name}}</td>
+                    <td class="text-center align-middle"> @if($application->status=='pending')<span class="badge badge-warning">{{$application->status}}</span>
+                    @elseif($application->status=='approved')<span class="badge badge-success">{{$application->status}}</span>
+                    @elseif($application->status=='rejected')<span class="badge badge-danger">{{$application->status}}</span>
+                  @endif</td>
                     <td class="align-middle">
                       {{Form::open(array('url'=>'application/update','method'=>'post','class'=>'form-login'))}}
                       <input type="hidden" name="_method" value="PUT">

@@ -20,9 +20,13 @@ class ApplicationController extends Controller
     public function index()
     {
         $lectId=Auth::user()->matric_no;
-        $application = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
+        $application = Application::select('application.*','student_information.*')->join('users', 'users.matric_no', '=', 'application.matric_no')
+              		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
+                    ->join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
               		->paginate(5);
-        //$application=Application::all();
+        //$application = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
+              		//->paginate(5);
+        //$applications=Application::all();
 
         return view('lecturer.application.index')->with('application', $application);
 

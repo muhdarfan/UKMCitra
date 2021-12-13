@@ -81,6 +81,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
+            @if($data->status=='pending')
             {{Form::open(array('url'=>'application/update','method'=>'post','class'=>'form-login'))}}
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -91,6 +92,7 @@
                 Approve
             </button>
             {{Form::close()}}
+            @endif
         </div>
 
         </form>
