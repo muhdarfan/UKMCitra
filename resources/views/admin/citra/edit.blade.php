@@ -76,7 +76,7 @@
                         <div class="form-group row">
                             <label for="availability" class="col-sm-2 col-form-label">Availability</label>
                             <div class="col-sm-10">
-                                <input name="availability" type="number" min="0" class="form-control" id="availability"
+                                <input name="courseAvailability" type="number" min="0" class="form-control" id="availability"
                                        value="{{ $citra->courseAvailability }}" placeholder="Availability"/>
                             </div>
                         </div>
