@@ -29,7 +29,7 @@ Route::get('/', function () {
     return redirect("/login");
 });
 
-Route::get('/history', function () {
+Route::get('/template', function () {
     return view('template');
 });
 

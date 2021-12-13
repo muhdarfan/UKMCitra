@@ -118,6 +118,7 @@ class CitraController extends Controller
                 ->leftJoin('citras_lecturer', 'users.matric_no', '=', 'citras_lecturer.matric_no')
                 ->where('users.role', 'lecturer')
                 ->where('users.matric_no', 'LIKE', "%{$matric}%")
+                ->orWhere('users.name', 'LIKE', "%{$matric}%")
                 ->select(['users.matric_no', 'users.name', 'citras_lecturer.courseCode'])
                 ->limit(5)->get();
 
