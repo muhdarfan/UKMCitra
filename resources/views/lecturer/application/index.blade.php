@@ -44,8 +44,10 @@
                       <input type="hidden" name="_method" value="PUT">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <a class="btn bg-gradient-primary mr-1" href="{{ route('application.edit',$application->application_id) }}">View</a>
+                      @if($application->status=='pending')
                       <button  class="btn bg-gradient-success mr-1" name="act" value="{{$application->application_id}}" >Approve</button>
                       <button  class="btn bg-gradient-danger" name="deact" value="{{$application->application_id}}" >Reject</button>
+                      @endif
                       {{Form::close()}}
                     </td>
                   
