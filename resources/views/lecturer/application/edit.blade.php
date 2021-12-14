@@ -9,8 +9,9 @@
         <!-- /.card-header -->
         <!-- form start -->
 
-        <form action="" class="form-horizontal" method="POST">
+        <form action="{{ route('application.update', $data->application_id) }}" class="form-horizontal" method="POST">
             @csrf
+            @method('PUT')
 
             <div class="card-body">
 

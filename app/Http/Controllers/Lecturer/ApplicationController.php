@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lecturer;
 use App\Models\Application;
 use App\Models\StudentInformation;
 use App\Models\User;
+use App\Models\Citra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,16 @@ class ApplicationController extends Controller
         //$application = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
               		//->paginate(5);
         //$applications=Application::all();
+        $citra=Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
+        ->join('citras', 'citras.courseCode', '=', 'application.courseCode')
+        ->where('citras_lecturer.matric_no',$lectId)->first();
 
-        return view('lecturer.application.index')->with('application', $application);
+        $availability=Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
+        ->where('citras_lecturer.matric_no',$lectId)
+        ->where('application.status','=','approved')->get();
+       
+
+        return view('lecturer.application.index',compact('application','citra','availability'));
 
     }
 
@@ -73,12 +82,14 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
+        
         $data = Application::join('users', 'users.matric_no', '=', 'application.matric_no')
               		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
+                    ->where('application.application_id',$id)
               		->first();
-        return view('lecturer.application.edit')->with('data',$data);
+        return view('lecturer.application.edit',compact('data'));
     }
 
     /**
