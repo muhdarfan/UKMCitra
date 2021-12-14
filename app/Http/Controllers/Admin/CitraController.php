@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Citra;
@@ -69,7 +70,9 @@ class CitraController extends Controller
      */
     public function edit(Citra $citra)
     {
-        return view('admin.citra.edit', compact('citra'));
+        $current=Application::join('citras', 'citras.courseCode', '=', 'application.courseCode')
+        ->where('application.status','=','approved')->where('citras.courseCode',$citra->courseCode)->count();
+        return view('admin.citra.edit', compact('citra','current'));
     }
 
     /**
