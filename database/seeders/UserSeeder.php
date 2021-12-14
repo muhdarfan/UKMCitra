@@ -46,5 +46,13 @@ class UserSeeder extends Seeder
             'role' => 'student',
             'phone' => '011-2345511'
         ]);
+
+        DB::table('student_information')->insert([
+            'matric_no' => 'A123',
+            'student_name' => 'Putera Niq',
+            'faculty' => 'FTSM',
+            'credit_limit' => 20,
+            'phone_number' => '+6011-2345511',
+        ]);
     }
 }

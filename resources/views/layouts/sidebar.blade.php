@@ -24,42 +24,6 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
 
-                    @if(\Illuminate\Support\Facades\Auth::user()->role === 'student')
-                    <li class="nav-header">STUDENT</li>
-                    <!-- Student -->
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
-                           class="nav-link {{ request()->is('home') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Dashboard
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
-                           class="nav-link {{ request()->is('application') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-file fa-sm "></i>
-                            <p>Application</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
-                           class="nav-link {{ request()->is('courses') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-list "></i>
-                            <p>Courses</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user_feedback') }}"
-                           class="nav-link {{ request()->is('feedback*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-comment-alt "></i>
-                            <p>Feedback</p>
-                        </a>
-                    </li>
-                    @endif
-
                     @if(\Illuminate\Support\Facades\Auth::user()->role === 'lecturer')
                         <li class="nav-header">LECTURER</li>
                         <!-- Lecturer -->
@@ -81,8 +45,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dashboard') }}"
-                               class="nav-link {{ request()->is('feedback') ? 'active' : '' }}">
+                            <a href="{{ route('mycitra.index') }}"
+                               class="nav-link {{ request()->is('mycitra*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-list "></i>
                                 <p>Courses</p>
                             </a>

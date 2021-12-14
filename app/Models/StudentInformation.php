@@ -9,8 +9,7 @@ use App\Models\User;
 class StudentInformation extends Model
 {
     use HasFactory;
-
-
+    
     public function user()
     {
         return $this->belongsTo(User::class,'matric_no');

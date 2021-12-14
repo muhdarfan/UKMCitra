@@ -48,11 +48,6 @@ class User extends Authenticatable
      */
     protected $casts = [
     ];
-
-    public function citras() {
-        return $this->belongsToMany(Citra::class)->wherePivot('role', '=', 'lecturer');
-    }
-
     public function hasRole($role)
     {
         if ($this->role === $role)
@@ -69,5 +64,9 @@ class User extends Authenticatable
     public function studentInfo()
     {
         return $this->hasOne(StudentInformation::class);
+    }
+
+    public function citras() {
+        return $this->belongsToMany(Citra::class, 'citras_lecturer', 'matric_no', 'courseCode');
     }
 }
