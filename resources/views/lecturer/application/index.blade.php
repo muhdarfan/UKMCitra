@@ -36,11 +36,11 @@
 
                         <td class="align-middle">{{$application->student_name}}</td>
                         <td class="text-center align-middle"> @if($application->status=='pending')<span
-                                class="badge badge-warning">{{$application->status}}</span>
+                                class="badge badge-warning">Pending</span>
                             @elseif($application->status=='approved')<span
-                                    class="badge badge-success">{{$application->status}}</span>
+                                    class="badge badge-success">Approved</span>
                             @elseif($application->status=='rejected')<span
-                                    class="badge badge-danger">{{$application->status}}</span>
+                                    class="badge badge-danger">Rejected</span>
                             @endif</td>
                         <td class="align-middle">
                             {{Form::open(array('url'=>'application/update','method'=>'post','class'=>'form-login'))}}
