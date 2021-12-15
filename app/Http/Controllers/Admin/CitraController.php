@@ -37,7 +37,7 @@ class CitraController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.citra.create');
     }
 
     /**
@@ -48,7 +48,20 @@ class CitraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'courseCode' => 'required',
+            'courseName' => 'required|max:256',
+            'courseCredit' => 'required|numeric|min:0',
+            'courseCategory' => 'required|in:C1,C2,C3,C4,C5,C6',
+            'courseAvailability' => 'required|numeric|min:0',
+            'descriptions' => 'required',
+
+        ]);
+    
+        Citra::create($request->all());
+     
+        return redirect()->route('citra.index')
+                        ->with('success','Citra Courses created successfully.');
     }
 
     /**

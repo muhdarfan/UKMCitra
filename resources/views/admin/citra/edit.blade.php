@@ -230,7 +230,7 @@
                 }
 
                 $.ajax({
-                    url: '{{ route('ajax.find_lecturer') }}',
+                    url: "{{ route('ajax.find_lecturer') }}",
                     type: 'POST',
                     dataType: 'json',
                     data: {
