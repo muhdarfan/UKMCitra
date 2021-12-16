@@ -3,7 +3,15 @@
 ## About UKM Citra
 
 To be added.
+
+### Live Preview
 Live Preview at **[here](http://ukmcs.lepak.xyz/)**
+
+| ROLE | Matric No. | Password |
+| ------ | ------ | ------ |
+| Admin | D123456 | password |
+| Lecturer | K123 / K1234 / K12345 | password |
+| Student | A123 / A1234 / A12345 | password |
 
 ### Collaborator
 
