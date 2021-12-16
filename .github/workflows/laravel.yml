@@ -68,5 +68,6 @@ jobs:
             php artisan down --message "The app is being updated. Please try again in a minute. Thank you for your patience!"
             git checkout -f
             git pull
+            composer install
             php artisan up
 
