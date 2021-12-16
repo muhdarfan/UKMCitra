@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Application;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,6 @@ class ApplicationSeeder extends Seeder
      */
     public function run()
     {
-       
+        Application::factory()->count(3)->create();
     }
 }

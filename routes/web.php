@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
     // Route for System Admin
     Route::middleware('role:admin')->group(function () {
+        Route::get('/citra/export', [\App\Http\Controllers\Admin\CitraController::class, 'export'])->name('citra.export');
         Route::resource('citra', \App\Http\Controllers\Admin\CitraController::class);
         Route::resource('citra.lecturer', \App\Http\Controllers\Admin\CitraLecturer::class)->except(['show', 'edit', 'update']);
         Route::resource('feedback', \App\Http\Controllers\FeedbackController::class)->except(['create', 'store']);

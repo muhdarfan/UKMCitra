@@ -92,9 +92,9 @@
                         <div class="form-group row">
                             <label for="studentcount" class="col-sm-2 col-form-label">Current Student</label>
                             <div class="col-sm-10">
-                                
+
                                 <input type="number" class="form-control-plaintext" value="{{$current}}" id="current"
-                                placeholder="Current" readonly>   
+                                placeholder="Current" readonly>
                             </div>
                         </div>
                     </div>
@@ -234,7 +234,8 @@
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        search: keyword
+                        search: keyword,
+                        courseCode: '{{ $citra->courseCode }}'
                     },
                     success: function (data) {
                         table_post_row(data);

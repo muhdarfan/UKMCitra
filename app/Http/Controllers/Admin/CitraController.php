@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\CitrasExport;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Citra;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CitraController extends Controller
 {
@@ -28,6 +31,29 @@ class CitraController extends Controller
         return view('admin.citra.index', [
             'citras' => Citra::paginate(5)
         ]);
+    }
+
+    /**
+     * Show the form for importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import() {
+
+    }
+
+    public function export() {
+        $date = Carbon::now()->format('d-M-Y');
+        return Excel::download(new CitrasExport, "citras-{$date}-".time().".xlsx");
+    }
+
+    /**
+     * Store a newly imported resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function saveData() {
+
     }
 
     /**
@@ -57,9 +83,9 @@ class CitraController extends Controller
             'descriptions' => 'required',
 
         ]);
-    
+
         Citra::create($request->all());
-     
+
         return redirect()->route('citra.index')
                         ->with('success','Citra Courses created successfully.');
     }
@@ -129,12 +155,17 @@ class CitraController extends Controller
     {
         if ($request->ajax()) {
             $matric = $request->input('search');
+            $courseCode = $request->input('courseCode');
 
             $lecturers = DB::table('users')
-                ->leftJoin('citras_lecturer', 'users.matric_no', '=', 'citras_lecturer.matric_no')
+                ->leftJoin('citras_lecturer', function ($q) use ($courseCode) {
+                    $q->on('users.matric_no', '=', 'citras_lecturer.matric_no');
+                    $q->on('citras_lecturer.courseCode', '=', DB::raw("'{$courseCode}'"));
+                })
                 ->where('users.role', 'lecturer')
-                ->where('users.matric_no', 'LIKE', "%{$matric}%")
-                ->orWhere('users.name', 'LIKE', "%{$matric}%")
+                ->where(function($q) use ($matric) {
+                    $q->where('users.matric_no', 'LIKE', "%{$matric}%")->orwhere('users.name', 'LIKE', "%{$matric}%");
+                })
                 ->select(['users.matric_no', 'users.name', 'citras_lecturer.courseCode'])
                 ->limit(5)->get();
 

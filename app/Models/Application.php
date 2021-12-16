@@ -15,8 +15,12 @@ class Application extends Model
     protected $primarykey = 'application_id';
 
     protected $fillable = [
-        'status'
-        
+        'session',
+        'matric_no',
+        'courseCode',
+        'reason',
+        'status',
+        'semester'
     ];
 
     public function getRouteKeyName()

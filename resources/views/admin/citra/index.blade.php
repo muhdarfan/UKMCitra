@@ -14,10 +14,18 @@
 
     <div class="row mb-2">
         <div class="col-12">
-            <a class="btn btn-app bg-gradient-warning disabled float-right">
+            <a href="{{ route('citra.export') }}" class="btn btn-app bg-gradient-info float-right">
+                <i class="fas fa-cloud-download-alt"></i> Export
+            </a>
+            <a class="btn btn-app bg-gradient-warning float-right">
+                <div class="ribbon-wrapper">
+                    <div class="ribbon bg-danger">
+                        Not Ready
+                    </div>
+                </div>
                 <i class="fas fa-cloud-upload-alt"></i> Import
             </a>
-            <a href="{{ route('citra.create') }}" class="btn btn-app bg-gradient-info float-right">
+            <a href="{{ route('citra.create') }}" class="btn btn-app bg-gradient-primary float-right">
                 <i class="fas fa-plus"></i> Add
             </a>
         </div>
