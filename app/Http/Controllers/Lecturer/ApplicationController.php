@@ -34,7 +34,14 @@ class ApplicationController extends Controller
 
         $availability=Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
         ->where('citras_lecturer.matric_no',$lectId)
-        ->where('application.status','=','approved')->get();
+        ->where('application.status','=','approved')->count();
+
+        if($availability<$citra->courseAvailability)
+        {
+        Application::where('status', 'pending' )->update(['status' => 'APPROVED']);
+        }
+
+        
        
 
         return view('lecturer.application.index',compact('application','citra','availability'));
