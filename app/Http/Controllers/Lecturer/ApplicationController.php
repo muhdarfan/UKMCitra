@@ -24,11 +24,12 @@ class ApplicationController extends Controller
         $application = Application::select('application.*','student_information.*')->join('users', 'users.matric_no', '=', 'application.matric_no')
               		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
                     ->join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
+                    ->orderBy('application.application_id','asc')
               		->paginate(5);
         //$application = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
               		//->paginate(5);
         //$applications=Application::all();
-        $citra=Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
+        $citra=Application::select('citras.courseAvailability')->join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
         ->join('citras', 'citras.courseCode', '=', 'application.courseCode')
         ->where('citras_lecturer.matric_no',$lectId)->first();
 
@@ -36,7 +37,7 @@ class ApplicationController extends Controller
         ->where('citras_lecturer.matric_no',$lectId)
         ->where('application.status','=','approved')->count();
 
-        if($availability<$citra->courseAvailability)
+        if($availability < $citra->courseAvailability)
         {
         Application::where('status', 'pending' )->update(['status' => 'APPROVED']);
         }
