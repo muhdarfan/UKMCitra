@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
-use App\Http\Requests\StoreApplicationRequest;
-use App\Http\Requests\UpdateApplicationRequest;
 use App\Models\Citra;
 use Illuminate\Http\Request;
 
-class MyApplicationController extends Controller
+class CitraListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,22 +23,18 @@ class MyApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Citra $citra)
+    public function create()
     {
         //
-        if(!$citra)
-            return redirect()->route('citras.index');
-
-        return view('student.application.apply', compact('citra'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreApplicationRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreApplicationRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -49,22 +42,21 @@ class MyApplicationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Application  $application
+     * @param  \App\Models\Citra  $citra
      * @return \Illuminate\Http\Response
      */
-    public function show(Application $application)
+    public function show(Citra $citra)
     {
         //
-        return 'test';
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Application  $application
+     * @param  \App\Models\Citra  $citra
      * @return \Illuminate\Http\Response
      */
-    public function edit(Application $application)
+    public function edit(Citra $citra)
     {
         //
     }
@@ -72,11 +64,11 @@ class MyApplicationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateApplicationRequest  $request
-     * @param  \App\Models\Application  $application
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Citra  $citra
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateApplicationRequest $request, Application $application)
+    public function update(Request $request, Citra $citra)
     {
         //
     }
@@ -84,10 +76,10 @@ class MyApplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Application  $application
+     * @param  \App\Models\Citra  $citra
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Application $application)
+    public function destroy(Citra $citra)
     {
         //
     }

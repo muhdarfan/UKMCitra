@@ -54,6 +54,15 @@ Route::middleware('auth')->group(function () {
 
     // Route for Student
     Route::middleware('role:student')->group(function () {
+        Route::get('citras/{citra}/apply', [\App\Http\Controllers\Student\MyApplicationController::class, 'create']);
+        Route::post('citras/{citra}/store', [\App\Http\Controllers\Student\MyApplicationController::class, 'store']);
+        Route::resource('citras', \App\Http\Controllers\Student\CitraListController::class)->only(['index', 'show']);
+
+
+        Route::resource('myApplication', \App\Http\Controllers\Student\MyApplicationController::class)->except([
+            'create', 'store'
+        ]);
+
         Route::get('/feedback_form', [\App\Http\Controllers\FeedbackController::class, 'create'])->name('user_feedback');
         Route::post('/feedback_form', [\App\Http\Controllers\FeedbackController::class, 'store'])->name('user_feedback_store');
     });

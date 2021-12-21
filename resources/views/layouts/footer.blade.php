@@ -5,5 +5,5 @@
 
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2021 Universiti Kebangsaan Malaysia.</strong> All rights reserved.
+    <strong>Copyright &copy; 2021 <a target="_blank" href="https://www.ukm.my/">Universiti Kebangsaan Malaysia</a>.</strong> All rights reserved.
 </footer>

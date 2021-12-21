@@ -19,10 +19,10 @@
                     <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('home*') ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('application*') ? 'active' : '' }}">Application</a>
+                    <a href="{{ route('myApplication.index') }}" class="nav-link {{ request()->is('myApplication*') ? 'active' : '' }}">Application</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('courses*') ? 'active' : '' }}">Courses</a>
+                    <a href="{{ route('citras.index') }}" class="nav-link {{ request()->is('courses*') ? 'active' : '' }}">Courses</a>
                 </li>
             </ul>
         </div>
