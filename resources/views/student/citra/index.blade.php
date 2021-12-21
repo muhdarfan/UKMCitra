@@ -22,11 +22,11 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th style="width: 10%">Course Code</th>
+                        <th style="width: 12%">Course Code</th>
                         <th>Course Name</th>
                         <th>Course Credit</th>
                         <th>Course Category</th>
-                        <th>Availability</th>
+                        <th style="width:10%">Registered</th>
                         <th style="width: 20%">Action</th>
                     </tr>
                 </thead>
@@ -38,7 +38,7 @@
                             <td class="align-middle">{{ $citra->courseName }}</td>
                             <td class="align-middle">{{ $citra->courseCredit }}</td>
                             <td class="align-middle">{{ $citra->courseCategory }}</td>
-                            <td class="align-middle">/{{ $citra->courseAvailability }}</td>
+                            <td class="align-middle text-center">{{ $citra->application->where('status', 'approved')->count() }}/{{ $citra->courseAvailability }}</td>
                             <td class="align-middle" class="text-center">
                                 
                                     <a href="{{ route('citras.show', $citra->courseCode) }}"
