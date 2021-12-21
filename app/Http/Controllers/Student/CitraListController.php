@@ -15,7 +15,10 @@ class CitraListController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('student.citra.index', [
+            'citras' => Citra::paginate(5)
+        ]);
     }
 
     /**
@@ -47,7 +50,7 @@ class CitraListController extends Controller
      */
     public function show(Citra $citra)
     {
-        //
+        return view('student.citra.show', compact('citra'));
     }
 
     /**
