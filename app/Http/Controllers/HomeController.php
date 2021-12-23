@@ -14,6 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
     }
 
     /**
@@ -28,5 +29,12 @@ class HomeController extends Controller
         } else {
             return view('dashboard');
         }
+    }
+
+    public function profile() {
+        if (auth()->user()->role === 'student')
+            return view('student.profile');
+
+        return view('profile');
     }
 }

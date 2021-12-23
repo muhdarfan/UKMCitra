@@ -25,7 +25,7 @@
 
                     <div class="form-group">
                         <label for="inputReason">Reason</label>
-                        <textarea class="form-control" id="inputReason" placeholder="Reason" rows="3"></textarea>
+                        <textarea class="form-control" id="inputReason" placeholder="Reason" rows="3" style="resize: none;"></textarea>
                     </div>
                 </div>
 

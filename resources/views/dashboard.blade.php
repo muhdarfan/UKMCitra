@@ -32,14 +32,12 @@
         <div class="col-lg-4 col-6 mx-auto">
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>2</h3>
-
-                    @if (Auth::user()->role == 'student')
-                    <p>Total Registered Courses</p>
-                    @elseif (Auth::user()->role == 'lecturer')
-                    <p>Total Submitted Application</p>
+                    @if (Auth::user()->role == 'lecturer')
+                        <h3>2</h3>
+                        <p>Total Submitted Application</p>
                     @elseif (Auth::user()->role == 'admin')
-                    <p>Total Submitted Feedback</p>
+                        <h3>2</h3>
+                        <p>Total Submitted Feedback</p>
                     @endif
                 </div>
                 <div class="icon">
@@ -50,14 +48,12 @@
         <div class="col-lg-4 col-6 mx-auto">
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>1</h3>
-
-                    @if (Auth::user()->role == 'student')
-                    <p>Total Approved Application</p>
-                    @elseif (Auth::user()->role == 'lecturer')
-                    <p>Total Approved Application</p>
+                    @if (Auth::user()->role == 'lecturer')
+                        <h3>1</h3>
+                        <p>Total Approved Application</p>
                     @elseif (Auth::user()->role == 'admin')
-                    <p>Total Feedback Today</p>
+                        <h3>1</h3>
+                        <p>Total Feedback Today</p>
                     @endif
                 </div>
                 <div class="icon">

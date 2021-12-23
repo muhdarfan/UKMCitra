@@ -36,6 +36,7 @@ Route::get('/template', function () {
 // Route for authenticated user
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 
     // Route for System Admin
     Route::middleware('role:admin')->group(function () {
@@ -54,13 +55,11 @@ Route::middleware('auth')->group(function () {
 
     // Route for Student
     Route::middleware('role:student')->group(function () {
-        Route::get('citras/{citra}/apply', [\App\Http\Controllers\Student\MyApplicationController::class, 'create']);
-        Route::post('citras/{citra}/store', [\App\Http\Controllers\Student\MyApplicationController::class, 'store']);
+        Route::post('citras/store', [\App\Http\Controllers\Student\MyApplicationController::class, 'store'])->name('myApplication.store');
         Route::resource('citras', \App\Http\Controllers\Student\CitraListController::class)->only(['index', 'show']);
 
-
         Route::resource('myApplication', \App\Http\Controllers\Student\MyApplicationController::class)->except([
-            'create', 'store'
+            'create', 'store', 'edit'
         ]);
 
         Route::get('/feedback_form', [\App\Http\Controllers\FeedbackController::class, 'create'])->name('user_feedback');
@@ -72,6 +71,10 @@ Route::middleware('auth')->group(function () {
         Route::post('search_lecturer', [\App\Http\Controllers\Admin\CitraController::class, 'search'])->name('find_lecturer');
         //Route::post('assign_lecturer', [\App\Http\Controllers\Admin\CitraController::class, 'assignLecturer'])->name('assign_lecturer');
     });
+});
+
+Route::get('asd', function () {
+    abort(500);
 });
 
 // Laravel Authentication Library

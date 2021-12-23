@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function studentInfo()
     {
-        return $this->hasOne(StudentInformation::class);
+        return $this->hasOne(StudentInformation::class, 'matric_no');
     }
 
     public function citras() {

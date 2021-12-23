@@ -24,6 +24,8 @@ class CreateApplicationTable extends Migration
 
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
             $table->foreign('courseCode')->references('courseCode')->on('citras')->onDelete('cascade');
+
+            $table->primary(['session', 'semester', 'matric_no', 'courseCode']);
             $table->timestamps();
         });
     }

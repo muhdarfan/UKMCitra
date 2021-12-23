@@ -13,7 +13,7 @@ class UpdateApplicationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->user()->role === 'student' && auth()->user()->studentInfo !== null;
     }
 
     /**

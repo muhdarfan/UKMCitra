@@ -15,31 +15,9 @@ class CitraListController extends Controller
      */
     public function index()
     {
-        
         return view('student.citra.index', [
             'citras' => Citra::paginate(5)
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -51,39 +29,5 @@ class CitraListController extends Controller
     public function show(Citra $citra)
     {
         return view('student.citra.show', compact('citra'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Citra  $citra
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Citra $citra)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Citra  $citra
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Citra $citra)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Citra  $citra
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Citra $citra)
-    {
-        //
     }
 }

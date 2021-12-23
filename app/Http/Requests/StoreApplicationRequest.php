@@ -13,7 +13,7 @@ class StoreApplicationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->user()->role === 'student' && auth()->user()->studentInfo !== null;
     }
 
     /**
@@ -24,6 +24,7 @@ class StoreApplicationRequest extends FormRequest
     public function rules()
     {
         return [
+            'courseCode' => 'required',
             //
         ];
     }

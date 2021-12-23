@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
             'student_name' => 'Putera Niq',
             'faculty' => 'FTSM',
             'credit_limit' => 20,
-            'phone_number' => '019-8918231',
+            'session_enter' => '20182019',
         ]);
 
 
@@ -93,7 +93,7 @@ class UserSeeder extends Seeder
             'student_name' => 'Syazili Juhari',
             'faculty' => 'FKAB',
             'credit_limit' => 23,
-            'phone_number' => '013-5123908',
+            'session_enter' => '20202021',
         ]);
 
 
@@ -112,7 +112,7 @@ class UserSeeder extends Seeder
             'student_name' => 'Aina Batrisyia',
             'faculty' => 'FST',
             'credit_limit' => 25,
-            'phone_number' => '013-5126612',
+            'session_enter' => '20192020',
         ]);
     }
 }

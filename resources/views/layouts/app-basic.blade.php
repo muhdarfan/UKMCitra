@@ -29,9 +29,9 @@
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
 
-    @include('layouts.header-basic')
+@include('layouts.header-basic')
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -64,5 +64,13 @@
     <!-- Main Footer -->
     @include('layouts.footer')
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ mix('js/adminlte.js') }}"></script>
+@stack('scripts')
+
+<!-- This page took {{ (microtime(true) - LARAVEL_START) }} seconds to render -->
 </body>
 </html>

@@ -23,7 +23,7 @@ class CreateStudentInformationTable extends Migration
             $table->string('student_name');
             $table->string('faculty');
             $table->integer('credit_limit');
-            $table->string('phone_number');
+            $table->string('session_enter');
 
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
             $table->timestamps();

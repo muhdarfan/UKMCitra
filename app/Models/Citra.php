@@ -36,6 +36,18 @@ class Citra extends Model
     {
         return $this->hasMany(Application::class, 'courseCode');
     }
+
+    public function registeredStudent() {
+        return $this->application()->where('status', 'approved')->count();
+    }
+
+    public function availableSlot() {
+        return intval($this->courseAvailability - $this->registeredStudent());
+    }
+
+    public function isAvailable() {
+        return $this->courseAvailability > $this->application()->where('status', 'approved')->count();
+    }
 }
 
 

@@ -9,7 +9,10 @@ use App\Models\User;
 class StudentInformation extends Model
 {
     use HasFactory;
-    
+
+    protected $primaryKey = 'matric_no';
+    public $incrementing = false;
+
     public function user()
     {
         return $this->belongsTo(User::class,'matric_no');
