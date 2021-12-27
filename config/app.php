@@ -2,6 +2,9 @@
 
 return [
 
+    'semester' => env('APP_CURRENT_SEMESTER', '1'),
+    'session' => env('APP_CURRENT_SESSION', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

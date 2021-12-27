@@ -9,6 +9,7 @@ use App\Models\Citra;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 
 class ApplicationController extends Controller
@@ -18,122 +19,101 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lectId=Auth::user()->matric_no;
-        $application = Application::select('application.*','student_information.*')->join('users', 'users.matric_no', '=', 'application.matric_no')
-              		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
-                    ->join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
-                    ->orderBy('application.application_id','asc')
-              		->paginate(5);
+        // Validate if authenticated user has permission to view.
+        if ($request->user()->cannot('viewAny', Application::class))
+            abort(404);
+
+        $lectId = Auth::user()->matric_no;
+        $application = Application::select('application.*', 'users.name')->join('users', 'users.matric_no', '=', 'application.matric_no')
+            ->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
+            ->join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no', $lectId);
+
         //$application = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')->where('citras_lecturer.matric_no',$lectId)
-              		//->paginate(5);
+        //->paginate(5);
         //$applications=Application::all();
-        $citra=Application::select('citras.courseAvailability')->join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
-        ->join('citras', 'citras.courseCode', '=', 'application.courseCode')
-        ->where('citras_lecturer.matric_no',$lectId)->first();
+        $citra = Application::select('citras.courseAvailability')->join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
+            ->join('citras', 'citras.courseCode', '=', 'application.courseCode')
+            ->where('citras_lecturer.matric_no', $lectId)->first();
 
-        $availability=Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
-        ->where('citras_lecturer.matric_no',$lectId)
-        ->where('application.status','=','approved')->count();
+        /*
+        $availability = Application::join('citras_lecturer', 'citras_lecturer.courseCode', '=', 'application.courseCode')
+            ->where('citras_lecturer.matric_no', $lectId)
+            ->where('application.status', '=', 'approved')->count();
 
-        if($availability < $citra->courseAvailability)
-        {
-        Application::where('status', 'pending' )->update(['status' => 'APPROVED']);
+
+        if ($availability < $citra->courseAvailability) {
+            Application::where('status', 'pending')->update(['status' => 'APPROVED']);
+        }
+        */
+
+        /*
+         * FILTERING BASED ON REQUEST
+         */
+        if ($request->has('course')) {
+            $application->where('application.courseCode', $request->course);
         }
 
-        
-       
+        if ($request->has('search')) {
+            $application->where(function ($query) use ($request) {
+                $query->orWhere('application.courseCode', 'LIKE', "%{$request->search}%");
+                $query->orWhere('application.matric_no', 'LIKE', "%{$request->search}%");
+                $query->orWhere('users.name', 'LIKE', "%{$request->search}%");
+                $query->orWhere('application.status', 'LIKE', "%{$request->search}%");
+            });
+        }
 
-        return view('lecturer.application.index',compact('application','citra','availability'));
+        $application = $application->orderBy('application.application_id', 'desc')->paginate(10);
 
-    }
+        return view('lecturer.application.index', compact('application', 'citra'));
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $data = Application::join('users', 'users.matric_no', '=', 'application.matric_no')
-              		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
-              		->first();
-        return view('lecturer.application.show')->with('data',$data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show(Request $request, Application $application)
     {
-        
+        /*
         $data = Application::join('users', 'users.matric_no', '=', 'application.matric_no')
-              		->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
-                    ->where('application.application_id',$id)
-              		->first();
-        return view('lecturer.application.edit',compact('data'));
+            ->join('student_information', 'student_information.matric_no', '=', 'users.matric_no')
+            ->where('application.application_id', $id)
+            ->first();
+        */
+        if ($request->user()->cannot('update', $application))
+            return redirect()->route('application.index');
+
+        return view('lecturer.application.show', compact('application'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Application $application)
     {
+        // Validate authenticated user if has permission to update.
+        if ($request->user()->cannot('update', $application))
+            return redirect()->route('application.index');
 
-        if(isset($request->act)) { //if you click activate button, update accordingly
-            $appId = $request->act;
-            Application::where('application_id', $appId )->update(['status' => 'APPROVED']);
+        // Validate if application is in 'pending' status
+        if ($application->status !== 'pending')
+            return redirect()->route('application.index')->with('message', ['type' => 'warning', 'text' => "Application #{$application->application_id} can't be updated since it has already been <strong>" . ucfirst($application->status) . "</strong>."]);
 
-          }if(isset($request->deact)) { //if you click deactivate button, update accordingly
-            $appId = $request->deact;
-            Application::where('application_id', $appId )->update(['status' => 'REJECTED']);
-          }
-          return redirect()->route('application.index')->with('success', 'Application updated successfully');
+        if (isset($request->act)) //if you click activate button, update accordingly
+            $application->update(['status' => 'approved']);
+        elseif (isset($request->deact)) //if you click deactivate button, update accordingly
+            $application->update(['status' => 'rejected']);
+        else
+            Log::info(auth()->user()->name . ' trying to update an application with unknown status.', 'Lecturer/Application');
 
-
-
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Application $application)
-    {
-        //
+        return redirect()->route('application.index')->with('message', ['type' => 'success', 'text' => 'Application updated successfully']);
     }
 }

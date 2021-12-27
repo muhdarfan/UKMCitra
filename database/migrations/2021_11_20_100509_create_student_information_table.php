@@ -20,9 +20,8 @@ class CreateStudentInformationTable extends Migration
 
         Schema::create('student_information', function (Blueprint $table) {
             $table->string('matric_no')->primary();
-            $table->string('student_name');
-            $table->string('faculty');
             $table->integer('credit_limit');
+            $table->string('faculty');
             $table->string('session_enter');
 
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');

@@ -2,83 +2,166 @@
 
 @section('title','Application Detail')
 @section('content')
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle"
+                             src="https://gambarpel.ukm.my/images/A174652.jpg" alt="User profile picture"/>
+                    </div>
 
-<div class="card card-info">
-    <div class="card-header">
-      <h3 class="card-title">{{$data->courseCode}} - Student Information</h3>
-    </div>
-    <!-- /.card-header -->
-    <!-- form start -->
+                    <h3 class="profile-username text-center">{{ $application->applicant->name }}</h3>
 
-    <form action="" class="form-horizontal" method="POST">
-      @csrf
-     
-      
+                    <p class="text-muted text-center">
+                        {{ $application->applicant->studentInfo->faculty }} -
+                        Year {{ $application->applicant->studentInfo->year() }}
+                    </p>
 
-      <div class="card-body">
-        
-        <div class="form-group row">
-          <label for="name" class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control-plaintext" value="{{$data->name}}" id="name" placeholder="Name" readonly>
-          </div>
+                    <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>Priority</b> <a class="float-right">HIGH</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Citra Course Taken</b> <a
+                                class="float-right">{{ $application->applicant->applications->where('status', 'approved')->count() }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ribbon-wrapper ribbon-lg">
+                    @php
+                        $status = 'warning';
+                        if($application->status === 'approved')
+                            $status = 'success';
+                        elseif ($application->status === 'rejected')
+                            $status = 'danger';
+                    @endphp
+
+                    <div class="ribbon bg-{{ $status }} text-lg">
+                        {{ $application->status }}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group row">
-          <label for="matric" class="col-sm-2 col-form-label">Matric Number</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control-plaintext" value="{{$data->matric_no}}" id="matric" placeholder="Matric Number" readonly>
-          </div>
+
+        <div class="col-md-9">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Student Information</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <div class="card-body">
+
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->applicant->name }}"
+                                   id="name"
+                                   placeholder="Name" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="matric" class="col-sm-2 col-form-label">Matric Number</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" value="{{ $application->matric_no }}"
+                                   id="matric" placeholder="Matric Number" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="faculty" class="col-sm-2 col-form-label">Faculty</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->applicant->studentInfo->faculty }}"
+                                   id="faculty" placeholder="Faculty" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="faculty" class="col-sm-2 col-form-label">Session</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->applicant->studentInfo->session_enter }}"
+                                   id="faculty" placeholder="Faculty" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->applicant->phone }}"
+                                   id="phone"
+                                   placeholder="Availability" readonly/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group row">
-            <label for="faculty" class="col-sm-2 col-form-label">Faculty</label>
-            <div class="col-sm-10">
-              <input type="text"  class="form-control-plaintext" value="{{$data->faculty}}" id="faculty" placeholder="Faculty" readonly>
+
+        <div class="col-md-12">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Extra Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="currentCredit">Current Credit</label>
+                            <input type="number" class="form-control-plaintext"
+                                   value="{{ $application->applicant->studentInfo->credit_limit }}"
+                                   id="currentCredit" placeholder="Current Credit" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="creditAllow">Credit Allowed</label>
+                            <input type="number" class="form-control-plaintext" value="20" id="creditAllow"
+                                   placeholder="Credit Allowed" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="courseName" class="col-sm-2 col-form-label">Course Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->course->courseName }}"
+                                   id="phone"
+                                   placeholder="Couse Name" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="reason" class="col-sm-2 col-form-label">Reason</label>
+                        <div class="col-sm-10">
+                    <textarea readonly class="form-control-plaintext" rows="3"
+                              placeholder="Reason">{{ $application->reason }}</textarea>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    @if($application->status=='pending')
+                        <form action="{{ route('application.update', $application->application_id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+
+                            <button class="btn bg-gradient-danger float-right mr-2" name="deact"
+                                    value="{{$application->application_id}}">
+                                Reject
+                            </button>
+                            <button class="btn bg-gradient-success float-right mr-2" name="act"
+                                    value="{{$application->application_id}}">
+                                Approve
+                            </button>
+                        </form>
+
+                    @endif
+                </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
-            <div class="col-sm-10">
-              <input type="text"  class="form-control-plaintext" value="{{$data->phone}}" id="phone" placeholder="Availability" readonly>
-            </div>
-          </div>
-      </div>
+            <!-- /.card -->
+        </div>
     </div>
-          <div class="card card-info">
-            <div class="card-header">
-              <h3 class="card-title">Extra Information</h3>
-            </div>
-            <div class="card-body">
-          <div class="form-group row">
-            <div class="form-group col-md-6">
-              <label for="currentCredit">Current Credit</label>
-              <input type="number" class="form-control-plaintext" value="{{$data->credit_limit}}" id="currentCredit" placeholder="Current Credit" readonly>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="creditAllow">Credit Allowed</label>
-              <input type="number" class="form-control-plaintext" value="20" id="creditAllow" placeholder="Credit Allowed" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="courseName" class="col-sm-2 col-form-label">Course Name</label>
-            <div class="col-sm-10">
-              <input type="text"  class="form-control-plaintext" value="{{$data->citra->courseName}}" id="phone" placeholder="Couse Name" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="reason" class="col-sm-2 col-form-label">Reason</label>
-            <div class="col-sm-10">
-                <textarea readonly class="form-control-plaintext" rows="3"  placeholder="Reason">{{$data->reason}}</textarea>
-            </div>
-          </div>
-          
-        
-        
-      </div>
-      <!-- /.card-body -->
-     
-    </form>
-  </div>
-  <!-- /.card -->
-
-
 @endsection

@@ -17,4 +17,8 @@ class StudentInformation extends Model
     {
         return $this->belongsTo(User::class,'matric_no');
     }
+
+    public function year() {
+        return (env('APP_CURRENT_SESSION') - $this->session_enter) / 10001;
+    }
 }

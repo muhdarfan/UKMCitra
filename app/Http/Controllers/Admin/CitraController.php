@@ -24,13 +24,12 @@ class CitraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $citras = DB::table('citras');
-        // $citras = Citra::all();
-        return view('admin.citra.index', [
-            'citras' => Citra::paginate(5)
-        ]);
+        $citras = Citra::search($request->search, $request->category)->withCount('application')->paginate(10);
+        $citraCategory = DB::table('citras')->selectRaw('courseCategory, count(courseCategory) as cnt')->groupBy('courseCategory')->get()->keyBy('courseCategory');
+
+        return view('admin.citra.index', compact('citras', 'citraCategory'));
     }
 
     /**

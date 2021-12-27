@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->role === 'student') {
-            return view('student.dashboard');
+            $applications = auth()->user()->applications()->orderBy('application_id', 'DESC')->get();
+
+            return view('student.dashboard', compact('applications'));
         } else {
             return view('dashboard');
         }

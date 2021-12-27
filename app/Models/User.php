@@ -48,6 +48,7 @@ class User extends Authenticatable
      */
     protected $casts = [
     ];
+
     public function hasRole($role)
     {
         if ($this->role === $role)
@@ -66,7 +67,23 @@ class User extends Authenticatable
         return $this->hasOne(StudentInformation::class, 'matric_no');
     }
 
-    public function citras() {
+    public function citras()
+    {
         return $this->belongsToMany(Citra::class, 'citras_lecturer', 'matric_no', 'courseCode');
+    }
+
+    public function scopeSearch($query, $search, $role)
+    {
+        if (isset($role))
+            $query->where('role', '=', 'student');
+
+        if (!isset($search))
+            return;
+
+        return $query->where(function ($q) use ($search) {
+            $q->orWhere('matric_no', 'LIKE', "%$search%");
+            $q->orWhere('name', 'LIKE', "%$search%");
+            $q->orWhere('role', 'LIKE', "%$search%");
+        });
     }
 }

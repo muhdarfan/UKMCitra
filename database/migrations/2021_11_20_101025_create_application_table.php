@@ -16,16 +16,16 @@ class CreateApplicationTable extends Migration
         Schema::create('application', function (Blueprint $table) {
             $table->id('application_id');
             $table->string('session')->nullable();
-            $table->string('matric_no');
+            $table->string('semester', 32)->default('1');
+            $table->string('matric_no', 32);
             $table->string('courseCode');
             $table->string('reason');
             $table->enum('status', ['approved', 'rejected', 'pending'])->default('pending');
-            $table->string('semester');
 
             $table->foreign('matric_no')->references('matric_no')->on('users')->onDelete('cascade');
             $table->foreign('courseCode')->references('courseCode')->on('citras')->onDelete('cascade');
 
-            $table->primary(['session', 'semester', 'matric_no', 'courseCode']);
+            $table->unique(['session', 'semester', 'matric_no', 'courseCode']);
             $table->timestamps();
         });
     }

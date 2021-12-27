@@ -12,7 +12,7 @@ class Application extends Model
     use HasFactory;
 
     protected $table = 'application';
-    protected $primarykey = 'application_id';
+    protected $primaryKey = 'application_id';
 
     protected $fillable = [
         'session',
@@ -24,17 +24,21 @@ class Application extends Model
     ];
 
     public function getRouteKeyName()
-{
-    return 'application_id';
-}
-
-    public function user()
     {
-        return $this->belongsTo(User::class,'matric_no');
+        return 'application_id';
     }
 
-    public function citra()
+    public function applicant()
     {
-        return $this->belongsTo(Citra::class,'courseCode');
+        return $this->belongsTo(User::class, 'matric_no');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Citra::class, 'courseCode');
+    }
+
+    public function scopeByStatus($query, $status) {
+        return isset($status) ? $query->where('status', '=', $status) : null;
     }
 }

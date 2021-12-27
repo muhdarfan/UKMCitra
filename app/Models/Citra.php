@@ -48,6 +48,21 @@ class Citra extends Model
     public function isAvailable() {
         return $this->courseAvailability > $this->application()->where('status', 'approved')->count();
     }
+
+    public function scopeSearch($query, $search, $category) {
+        if (isset($category)) {
+            $query->where('courseCategory', '=', $category);
+        }
+
+        if (!isset($search))
+            return;
+
+        return $query->where(function ($q) use ($search) {
+            $q->orWhere('courseCode', 'LIKE', "%{$search}%");
+            $q->orWhere('courseCredit', 'LIKE', "%{$search}%");
+            $q->orWhere('courseName', 'LIKE', "%{$search}%");
+        });
+    }
 }
 
 

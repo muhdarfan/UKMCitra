@@ -26,33 +26,12 @@ class MyCitraController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
         $citra = auth()->user()->citras()->with('application')->wherePivot('courseCode', '=', $id)->first();
@@ -62,7 +41,16 @@ class MyCitraController extends Controller
         if (!$citra)
             return redirect()->route('mycitra.index');
 
-        return view('lecturer.courses.edit', compact('citra'));
+        /*
+        if ($request->has('status'))
+            $citra->application = $citra->application->filter(function ($item) use ($request) {
+                return stripos($item['status'], $request->status) !== false;
+            });
+        */
+
+        $citra->application = $citra->application()->byStatus($request->status)->orderBy('application_id', 'desc')->paginate(10);
+
+        return view('lecturer.courses.show', compact('citra'));
     }
 
     /**
@@ -74,7 +62,7 @@ class MyCitraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*
         $citra = auth()->user()->citras()->with('application')->wherePivot('courseCode', '=', $id)->first();
 
         // Check whether Lecturer has permission to the Citra courses.
@@ -98,16 +86,6 @@ class MyCitraController extends Controller
         $citra->save();
 
         return redirect()->route('mycitra.show', $citra->courseCode)->with('message', ['type' => 'success', 'text' => 'Citra courses new availability has been successfully updated.']);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        */
     }
 }

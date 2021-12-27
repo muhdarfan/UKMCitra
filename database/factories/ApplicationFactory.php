@@ -21,7 +21,7 @@ class ApplicationFactory extends Factory
             'matric_no' => User::inRandomOrder()->where('role', 'student')->first()->matric_no,
             'courseCode' => 'LMCR2482',
             'reason' => $this->faker->text(30),
-            'status' => 'pending',
+            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
             'semester' => 1,
             //
         ];

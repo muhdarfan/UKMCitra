@@ -49,8 +49,8 @@ Route::middleware('auth')->group(function () {
 
     // Route for Lecturer
     Route::middleware('role:lecturer')->group(function () {
-        Route::resource('application', \App\Http\Controllers\Lecturer\ApplicationController::class);
-        Route::resource('mycitra', \App\Http\Controllers\Lecturer\MyCitraController::class);
+        Route::resource('application', \App\Http\Controllers\Lecturer\ApplicationController::class)->only(['index', 'show', 'update']);
+        Route::resource('mycitra', \App\Http\Controllers\Lecturer\MyCitraController::class)->only(['index', 'show']);
     });
 
     // Route for Student

@@ -71,7 +71,6 @@ class UserSeeder extends Seeder
 
         DB::table('student_information')->insert([
             'matric_no' => 'A123',
-            'student_name' => 'Putera Niq',
             'faculty' => 'FTSM',
             'credit_limit' => 20,
             'session_enter' => '20182019',
@@ -90,7 +89,6 @@ class UserSeeder extends Seeder
 
         DB::table('student_information')->insert([
             'matric_no' => 'A1234',
-            'student_name' => 'Syazili Juhari',
             'faculty' => 'FKAB',
             'credit_limit' => 23,
             'session_enter' => '20202021',
@@ -109,7 +107,6 @@ class UserSeeder extends Seeder
 
         DB::table('student_information')->insert([
             'matric_no' => 'A12345',
-            'student_name' => 'Aina Batrisyia',
             'faculty' => 'FST',
             'credit_limit' => 25,
             'session_enter' => '20192020',
