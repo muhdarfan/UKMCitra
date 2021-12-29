@@ -28,7 +28,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('citras.index') }}"
-                               class="nav-link {{ request()->is('courses*') ? 'active' : '' }}">Courses</a>
+                               class="nav-link {{ request()->is('citras*') ? 'active' : '' }}">Courses</a>
                         </li>
                     @endif
                 @endauth

@@ -14,7 +14,7 @@
 
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="sticky-top mb-3">
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('citra.create') }}" class="btn btn-app bg-gradient-primary">
@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-9">
             <!-- Default data table -->
             <div class="card">
                 <div class="card-header">
@@ -118,7 +118,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn bg-gradient-danger"
+                                            <button type="submit" class="btn bg-gradient-danger mt-1"
                                                     onclick="return confirm('Are you sure want to delete this Citra?');">
                                                 Delete
                                             </button>

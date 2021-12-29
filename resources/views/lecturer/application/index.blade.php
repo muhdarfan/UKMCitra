@@ -91,11 +91,11 @@
                                 <th>Matric No.</th>
                                 <th>Applicant's Name</th>
                                 <th style="width: 8%" class="text-center">Status</th>
-                                <th style="width: 25%">Action</th>
+                                <th style="width: 30%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($application as $application)
+                            @foreach($applications as $application)
                                 <tr>
                                     <td class="align-middle"><a
                                             href="{{ route('mycitra.show', $application->courseCode) }}">{{$application->courseCode}}</a>
@@ -116,11 +116,11 @@
                                             @csrf
                                             @method('PUT')
 
-                                            <a class="btn bg-gradient-primary mr-1"
+                                            <a class="btn bg-gradient-primary m-1"
                                                href="{{ route('application.show',$application->application_id) }}">View</a>
 
                                             @if($application->status === 'pending')
-                                                <button class="btn bg-gradient-success mr-1" name="act"
+                                                <button class="btn bg-gradient-success m-1" name="act"
                                                         value="{{$application->application_id}}">Approve
                                                 </button>
                                                 <button class="btn bg-gradient-danger" name="deact"
@@ -137,9 +137,10 @@
                             </tbody>
 
                         </table>
+                        {!! $applications->withQueryString()->links() !!}
                     </div>
 
-                    <br/>
+                    
                 </div>
                 <!-- /.card-body -->
             </div>

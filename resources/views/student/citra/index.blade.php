@@ -85,7 +85,7 @@
                                 <th>Course Credit</th>
                                 <th>Course Category</th>
                                 <th style="width:10%">Registered</th>
-                                <th style="width: 20%">Action</th>
+                                <th style="width: 25%">Action</th>
                             </tr>
                             </thead>
                             <tbody>

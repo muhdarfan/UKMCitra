@@ -64,9 +64,9 @@ class ApplicationController extends Controller
             });
         }
 
-        $application = $application->orderBy('application.application_id', 'desc')->paginate(10);
+        $applications = $application->orderBy('application.application_id', 'desc')->paginate(10);
 
-        return view('lecturer.application.index', compact('application', 'citra'));
+        return view('lecturer.application.index', compact('applications', 'citra'));
 
     }
 
