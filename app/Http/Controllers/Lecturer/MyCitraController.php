@@ -51,6 +51,7 @@ class MyCitraController extends Controller
         $citra->application = $citra->application()->byStatus($request->status)->orderBy('application_id', 'desc')->paginate(10);
 
         return view('lecturer.courses.show', compact('citra'));
+        
     }
 
     /**

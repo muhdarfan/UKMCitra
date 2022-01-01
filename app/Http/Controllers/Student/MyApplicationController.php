@@ -67,6 +67,7 @@ class MyApplicationController extends Controller
     public function show(Application $application)
     {
         return 'test';
+        // return view('applicationstatus');
     }
 
     /**
