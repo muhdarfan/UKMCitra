@@ -18,7 +18,7 @@ class MyApplicationController extends Controller
      */
     public function index()
     {
-
+        return view('applicationstatus');
     }
 
     /**
@@ -67,7 +67,6 @@ class MyApplicationController extends Controller
     public function show(Application $application)
     {
         return 'test';
-        // return view('applicationstatus');
     }
 
     /**
