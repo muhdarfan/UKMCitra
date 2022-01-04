@@ -68,7 +68,7 @@ class MyApplicationController extends Controller
      */
     public function show(Application $application)
     {
-        return 'test';
+        return view ('student.applicationstatus.show', compact('application'));
     }
 
     /**
