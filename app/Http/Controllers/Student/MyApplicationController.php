@@ -18,7 +18,9 @@ class MyApplicationController extends Controller
      */
     public function index()
     {
-        return view('student.applicationstatus.index');
+        $applications = Application::where('matric_no', '=', auth()->user()->matric_no)->orderByDesc('created_at')->paginate(10);
+
+        return view('student.application.index', compact('applications'));
     }
 
     /**

@@ -140,7 +140,7 @@
                         {!! $applications->withQueryString()->links() !!}
                     </div>
 
-                    
+
                 </div>
                 <!-- /.card-body -->
             </div>
