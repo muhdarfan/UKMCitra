@@ -35,6 +35,15 @@ Route::get('/template', function () {
 
 // Route for authenticated user
 Route::middleware('auth')->group(function () {
+    Route::get('/language/{locale}', function ($locale) {
+        if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+            app()->setLocale($locale);
+            session()->put('locale', $locale);
+        }
+
+        return redirect()->back();
+    })->name('language');
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 
@@ -45,6 +54,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('citra.lecturer', \App\Http\Controllers\Admin\CitraLecturer::class)->except(['show', 'edit', 'update']);
         Route::resource('feedback', \App\Http\Controllers\FeedbackController::class)->except(['create', 'store']);
         Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+
+        Route::get('/announcement/{announcement}/feature', [\App\Http\Controllers\Admin\AnnouncementController::class, 'feature'])->name('announcement.feature');
+        Route::resource('announcement', \App\Http\Controllers\Admin\AnnouncementController::class)->except(['edit'])->missing(function (\Illuminate\Http\Request $request) {
+            return redirect()->route('announcement.index');
+        });
     });
 
     // Route for Lecturer
@@ -55,11 +69,10 @@ Route::middleware('auth')->group(function () {
 
     // Route for Student
     Route::middleware('role:student')->group(function () {
-        Route::post('citras/store', [\App\Http\Controllers\Student\MyApplicationController::class, 'store'])->name('myApplication.store');
         Route::resource('citras', \App\Http\Controllers\Student\CitraListController::class)->only(['index', 'show']);
 
         Route::resource('myApplication', \App\Http\Controllers\Student\MyApplicationController::class)->except([
-            'create', 'store', 'edit'
+            'create', 'edit'
         ]);
 
         Route::get('/feedback_form', [\App\Http\Controllers\FeedbackController::class, 'create'])->name('user_feedback');

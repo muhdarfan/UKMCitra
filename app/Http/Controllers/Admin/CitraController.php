@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\User;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use App\Models\Citra;
 use Illuminate\Support\Facades\DB;
@@ -37,13 +38,15 @@ class CitraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function import() {
+    public function import()
+    {
 
     }
 
-    public function export() {
+    public function export()
+    {
         $date = Carbon::now()->format('d-M-Y');
-        return Excel::download(new CitrasExport, "citras-{$date}-".time().".xlsx");
+        return Excel::download(new CitrasExport, "citras-{$date}-" . time() . ".xlsx");
     }
 
     /**
@@ -51,7 +54,8 @@ class CitraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveData() {
+    public function saveData()
+    {
 
     }
 
@@ -86,7 +90,7 @@ class CitraController extends Controller
         Citra::create($request->all());
 
         return redirect()->route('citra.index')
-                        ->with('success','Citra Courses created successfully.');
+            ->with('success', 'Citra Courses created successfully.');
     }
 
     /**
@@ -97,7 +101,48 @@ class CitraController extends Controller
      */
     public function show(Citra $citra)
     {
-        return view('admin.citra.show', compact('citra'));
+        $applications = $citra->application()->orderByDesc('created_at')->get();
+
+        // Application by Status
+        $applicationsStats = DB::table('application as a')->join('student_information as s', 'a.matric_no', '=', 's.matric_no')
+            ->selectRaw('COUNT(a.application_id) as cnt, s.session_enter')
+            ->groupBy('s.session_enter')
+            ->orderBy('s.session_enter')->get()
+            ->mapWithKeys(function ($item) {
+                return ['Year ' . $this->calculateYear($item->session_enter) => $item->cnt];
+            });
+
+        // Application by Faculty
+        $applicationsFaculty = DB::table('application as a')->join('student_information as s', 'a.matric_no', '=', 's.matric_no')
+            ->selectRaw('COUNT(a.application_id) as cnt, s.faculty')
+            ->groupBy('s.faculty')
+            ->orderBy('s.faculty')->get()
+            ->mapWithKeys(function ($item) {
+                return [$item->faculty => $item->cnt];
+            });
+
+        // Application by Time
+        $applicationsDateDB = DB::table('application')->selectRaw('COUNT(application_id) as cnt, SUM(if(status = "approved", 1, 0)) as approved, SUM(if(status = "pending", 1, 0)) as pending, SUM(if(status = "rejected", 1, 0)) as rejected, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
+            ->whereDate('created_at', '>=', Carbon::now()->subDays(7))
+            ->where('courseCode', '=', $citra->courseCode)
+            ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
+            ->groupBy('fdate')->get()
+            ->mapWithKeys(function ($item) {
+                return [$item->fdate => ['all' => $item->cnt, 'approved' => intval($item->approved), 'rejected' => intval($item->rejected), 'pending' => intval($item->pending)]];
+            });
+
+        $applicationsDate = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
+            return [$date->format('d/m/Y') => ["all" => 0, "rejected" => 0, 'approved' => 0]];
+        })->merge($applicationsDateDB);
+
+        return view('admin.citra.show', compact(
+            'citra',
+            'applications',
+            'applicationsStats',
+            'applicationsDate',
+            'applicationsFaculty',
+            'applicationsStats',
+        ));
     }
 
     /**
@@ -108,9 +153,9 @@ class CitraController extends Controller
      */
     public function edit(Citra $citra)
     {
-        $current=Application::join('citras', 'citras.courseCode', '=', 'application.courseCode')
-        ->where('application.status','=','approved')->where('citras.courseCode',$citra->courseCode)->count();
-        return view('admin.citra.edit', compact('citra','current'));
+        $current = Application::join('citras', 'citras.courseCode', '=', 'application.courseCode')
+            ->where('application.status', '=', 'approved')->where('citras.courseCode', $citra->courseCode)->count();
+        return view('admin.citra.edit', compact('citra', 'current'));
     }
 
     /**
@@ -162,7 +207,7 @@ class CitraController extends Controller
                     $q->on('citras_lecturer.courseCode', '=', DB::raw("'{$courseCode}'"));
                 })
                 ->where('users.role', 'lecturer')
-                ->where(function($q) use ($matric) {
+                ->where(function ($q) use ($matric) {
                     $q->where('users.matric_no', 'LIKE', "%{$matric}%")->orwhere('users.name', 'LIKE', "%{$matric}%");
                 })
                 ->select(['users.matric_no', 'users.name', 'citras_lecturer.courseCode'])
@@ -172,5 +217,10 @@ class CitraController extends Controller
         }
 
         abort(403);
+    }
+
+    private function calculateYear($session)
+    {
+        return (env('APP_CURRENT_SESSION') - $session) / 10001;
     }
 }

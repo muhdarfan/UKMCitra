@@ -75,7 +75,7 @@ class User extends Authenticatable
     public function scopeSearch($query, $search, $role)
     {
         if (isset($role))
-            $query->where('role', '=', 'student');
+            $query->where('role', '=', $role);
 
         if (!isset($search))
             return;

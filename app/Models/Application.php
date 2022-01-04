@@ -30,7 +30,7 @@ class Application extends Model
 
     public function applicant()
     {
-        return $this->belongsTo(User::class, 'matric_no');
+        return $this->belongsTo(User::class, 'matric_no')->with('studentInfo');
     }
 
     public function course()

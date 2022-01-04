@@ -32,7 +32,7 @@
                                class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Dashboard
+                                    {{ __('Dashboard') }}
                                 </p>
                             </a>
                         </li>
@@ -41,14 +41,14 @@
                             <a href="{{ route('application.index') }}"
                                class="nav-link {{ request()->is('application*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-file fa-sm "></i>
-                                <p>Application</p>
+                                <p>{{ __('Application') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('mycitra.index') }}"
                                class="nav-link {{ request()->is('mycitra*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-list "></i>
-                                <p>Courses</p>
+                                <p>{{ __('Courses') }}</p>
                             </a>
                         </li>
                     @endif
@@ -62,30 +62,30 @@
                                class="nav-link {{ request()->is('home') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Dashboard
+                                    {{ __('Dashboard') }}
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('dashboard') }}"
+                            <a href="{{ route('announcement.index') }}"
                                class="nav-link {{ request()->is('announcement*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-bullhorn "></i>
-                                <p>Announcement</p>
+                                <p>{{ __('Announcement') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('citra.index') }}"
                                class="nav-link {{ request()->is('citra*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-list "></i>
-                                <p>Courses</p>
+                                <p>{{ __('Courses') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('feedback.index') }}"
                                class="nav-link {{ request()->is('feedback*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-comment-alt "></i>
-                                <p>Feedback</p>
+                                <p>{{ __('Feedback') }}</p>
                             </a>
                         </li>
 
@@ -93,7 +93,7 @@
                             <a href="{{ route('users.index') }}"
                                class="nav-link {{ request()->is('users*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user "></i>
-                                <p>Users</p>
+                                <p>{{ __('Users') }}</p>
                             </a>
                         </li>
                     @endif

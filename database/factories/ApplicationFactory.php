@@ -22,15 +22,10 @@ class ApplicationFactory extends Factory
             'courseCode' => 'LMCR2482',
             'reason' => $this->faker->text(30),
             'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
+            //'session' => config('app.session'),
             'semester' => 1,
+            'created_at' => Carbon::now()->subHours($this->faker->numberBetween(1, 128)),
             //
         ];
-    }
-
-    public function configure()
-    {
-        return $this->afterCreating(function (Application $app) {
-           Carbon::setTestNow(Carbon::now()->addMinute());
-        });
     }
 }

@@ -9,32 +9,17 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-    @if(Auth::check())
-        <!-- Notifications Dropdown Menu -->
+        @if(Auth::check())
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge">15</span>
+                    <i class="flag-icon flag-icon-us"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-header">15 Notifications</span>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 4 new messages
-                        <span class="float-right text-muted text-sm">3 mins</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 8 friend requests
-                        <span class="float-right text-muted text-sm">12 hours</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i> 3 new reports
-                        <span class="float-right text-muted text-sm">2 days</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                <div class="dropdown-menu dropdown-menu-right p-0">
+                    @foreach(config('app.available_locales') as $locale_name => $locale)
+                        <a href="{{ route('language', $locale) }}" class="dropdown-item {{ app()->getLocale() === $locale ? 'active' : '' }}">
+                            <i class="flag-icon flag-icon-us mr-2"></i> {{ $locale_name }}
+                        </a>
+                    @endforeach
                 </div>
             </li>
 
@@ -51,7 +36,8 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item {{ request()->is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">My Account</a>
+                    <a class="dropdown-item {{ request()->is('profile') ? 'active' : '' }}"
+                       href="{{ route('profile') }}">{{ __('My Account') }}</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>

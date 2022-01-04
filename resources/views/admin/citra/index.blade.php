@@ -108,7 +108,7 @@
                                     <td class="align-middle">{{ $citra->courseCredit }}</td>
                                     <td class="align-middle">{{ $citra->courseCategory }}</td>
                                     <td class="align-middle">{{ $citra->application_count }}</td>
-                                    <td class="align-middle" class="text-center">
+                                    <td class="align-middle text-center">
                                         <form action="{{ route('citra.destroy', $citra->courseCode) }}" method="POST">
                                             <a href="{{ route('citra.show', $citra->courseCode) }}"
                                                class="btn bg-gradient-primary mr-1">Detail</a>
@@ -118,7 +118,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn bg-gradient-danger mt-1"
+                                            <button type="submit" class="btn bg-gradient-danger"
                                                     onclick="return confirm('Are you sure want to delete this Citra?');">
                                                 Delete
                                             </button>
