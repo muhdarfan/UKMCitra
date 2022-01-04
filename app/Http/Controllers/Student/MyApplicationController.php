@@ -18,7 +18,7 @@ class MyApplicationController extends Controller
      */
     public function index()
     {
-        return view('applicationstatus');
+        return view('student.applicationstatus.index');
     }
 
     /**

@@ -24,29 +24,27 @@
                                 </thead>
                                 <tbody>
                                   <tr class="odd">
-                                    <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                    <td>LMCR2482</td>
+                                    <td class="dtr-control sorting_1" tabindex="0">LMCR2482</td>
                                     <td>ASAS REKA BENTUK GRAFIK</td>
                                     <td>1</td>
+                                    <td>Pending</td>
                                     <td>View</td>
                                   </tr>
                                   <tr class="even">
-                                    <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                    <td>LMCK3421</td>
-                                    <td>Lorem Ipsum</td>
+                                    <td class="dtr-control sorting_1" tabindex="0">LMCK3421</td>
+                                    <td>Lorem Ipsum<</td>
                                     <td>2</td>
+                                    <td>Pending</td>
                                     <td>View</td>
                                   </tr>
                                 </tbody>
-                                <!-- <tfoot>
-                                  <tr><th rowspan="1" colspan="1">Course Code</th><th rowspan="1" colspan="1">Course Name</th><th rowspan="1" colspan="1">Set</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">Action</th></tr>
-                                </tfoot> -->
+
                               </table>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-sm-12 col-md-5">
-                              <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                              <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 50 entries</div>
                             </div>
                             <div class="col-sm-12 col-md-7">
                               <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
