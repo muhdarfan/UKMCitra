@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\Lecturer;
 
-use App\Models\Application;
-use App\Models\StudentInformation;
-use App\Models\User;
-use App\Models\Citra;
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\View;
 
 class ApplicationController extends Controller
 {

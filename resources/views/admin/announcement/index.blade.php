@@ -56,6 +56,7 @@
                                             @csrf
                                             @method('DELETE')
 
+                                            <!--
                                             @if($announcement->featured === '1')
                                                 <a href="{{ route('announcement.feature', $announcement->id) }}"
                                                    onclick="return confirm('Are you sure want to remove this announcement from being featured?');"
@@ -65,6 +66,7 @@
                                                    onclick="return confirm('Are you sure want to feature this announcement?');"
                                                    type="button" class="btn btn-primary"><i class="fas fa-star"></i></a>
                                             @endif
+                                                -->
 
                                             <a href="{{ route('announcement.show', $announcement->id) }}" type="button"
                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>

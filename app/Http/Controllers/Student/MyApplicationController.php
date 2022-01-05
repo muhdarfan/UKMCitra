@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
 use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Requests\UpdateApplicationRequest;
+use App\Models\Application;
 use App\Models\Citra;
 use Illuminate\Http\Request;
 
@@ -66,9 +66,13 @@ class MyApplicationController extends Controller
      * @param \App\Models\Application $application
      * @return \Illuminate\Http\Response
      */
-    public function show(Application $application)
+    public function show(Request $request, $id)
     {
-        return view ('student.applicationstatus.show', compact('application'));
+        $application = Application::findOrFail($id);
+        if ($request->user()->cannot('view', $application))
+            return redirect()->route('myApplication.index');
+
+        return view ('student.application.show', compact('application'));
     }
 
     /**

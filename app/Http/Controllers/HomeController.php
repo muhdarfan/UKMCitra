@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Application;
 use App\Models\Citra;
 use App\Models\Feedback;
-use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -30,10 +29,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $announcement = Announcement::orderByDesc('created_at')->first();
+
         if (auth()->user()->role === 'student') {
             $applications = auth()->user()->applications()->orderBy('application_id', 'DESC')->get();
 
-            return view('student.dashboard', compact('applications'));
+            return view('student.dashboard', compact('applications', 'announcement'));
         } elseif (auth()->user()->role === 'admin') {
             $coursesCount = Citra::count();
             $applicationCount = Application::count();
@@ -85,7 +86,7 @@ class HomeController extends Controller
 
             return view('admin.dashboard', compact('fullCoursesCount', 'coursesCount', 'applicantCount', 'feedbackCount', 'topCourses', 'applicationsStats', 'applicationCount', 'applicationStatus', 'applicationsDate'));
         } else {
-            return view('dashboard');
+            return view('dashboard', compact('announcement'));
         }
     }
 

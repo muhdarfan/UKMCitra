@@ -19,6 +19,7 @@ class ApplicationFactory extends Factory
     {
         return [
             'matric_no' => User::inRandomOrder()->where('role', 'student')->first()->matric_no,
+            //'courseCode' => Citra::inRandomOrder()->courseCode,
             'courseCode' => 'LMCR2482',
             'reason' => $this->faker->text(30),
             'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),

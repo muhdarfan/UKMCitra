@@ -121,7 +121,8 @@
                                                     Exceeded by {{ $course->approved - $course->courseAvailability }}
                                                     students!
                                                 @elseif(intval($course->cntLeft) === 0)
-                                                    Full at {{ \Carbon\Carbon::parse($course->last_submit)->format('d M, Y') }}
+                                                    Full
+                                                    at {{ \Carbon\Carbon::parse($course->last_submit)->format('d M, Y') }}
                                                 @endif
                                             </span>
                                         </div>
@@ -311,9 +312,8 @@
             PIE CHART
             ========
              */
-
+            @if(!$applicationsStats->isEmpty())
             const pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            const appStatusChartCanvas = $('#applicationStatusChart').get(0).getContext('2d');
 
             const pieOptions = {
                 maintainAspectRatio: false,
@@ -334,7 +334,10 @@
                 },
                 options: pieOptions
             });
+            @endif
 
+            @if($applicationStatus->isNotEmpty())
+            const appStatusChartCanvas = $('#applicationStatusChart').get(0).getContext('2d');
             new Chart(appStatusChartCanvas, {
                 type: 'bar',
                 data: {
@@ -354,6 +357,7 @@
                     ],
                 },
             });
+            @endif
         });
     </script>
 @endpush

@@ -12,6 +12,7 @@ class Citra extends Model
     protected $table = 'citras';
     protected $primaryKey = 'courseCode';
     protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
         'courseCode',

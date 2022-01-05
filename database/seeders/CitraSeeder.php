@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Citra;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +25,6 @@ class CitraSeeder extends Seeder
             industry'
         ]);
 
-        Citra::factory()->count(10)->create();
+        //Citra::factory()->count(10)->create();
     }
 }

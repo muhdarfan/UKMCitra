@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Lecturer;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
 use Illuminate\Http\Request;
 
 class MyCitraController extends Controller
@@ -51,7 +50,7 @@ class MyCitraController extends Controller
         $citra->application = $citra->application()->byStatus($request->status)->orderBy('application_id', 'desc')->paginate(10);
 
         return view('lecturer.courses.show', compact('citra'));
-        
+
     }
 
     /**

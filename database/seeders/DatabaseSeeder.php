@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Citra;
-use Database\Factories\CitraFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,8 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            UserSeeder::class,
             CitraSeeder::class,
+            UserSeeder::class,
             ApplicationSeeder::class
         ]);
     }

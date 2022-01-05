@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\CitrasExport;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
-use App\Models\User;
+use App\Models\Citra;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
-use App\Models\Citra;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 

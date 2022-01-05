@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Application;
+use App\Models\Citra;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -16,6 +16,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        User::factory()->count(15)->role('lecturer')->has(Citra::factory()->count(1))->create();
+        User::factory()->count(25)->role('student')->has(Application::factory()->count(1), 'applications')->create();
+        User::factory()->count(3)->role('admin')->create();
+        /*
         // ADMIN
         DB::table('users')->insert([
             'matric_no' => 'D123456',
@@ -111,5 +115,6 @@ class UserSeeder extends Seeder
             'credit_limit' => 25,
             'session_enter' => '20192020',
         ]);
+        */
     }
 }

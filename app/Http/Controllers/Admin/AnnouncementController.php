@@ -17,7 +17,7 @@ class AnnouncementController extends Controller
     {
         //
         return view('admin.announcement.index', [
-            'announcements' => Announcement::with('author')->paginate(10)
+            'announcements' => Announcement::with('author')->orderByDesc('created_at')->paginate(10)
         ]);
     }
 
