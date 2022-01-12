@@ -39,6 +39,11 @@ class CitraController extends Controller
      */
     public function import()
     {
+        return view('admin.citra.import');
+    }
+
+    public function storeImport(Request $request)
+    {
 
     }
 

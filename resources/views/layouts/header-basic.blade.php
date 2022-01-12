@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-        <a href="{{ route('dashboard') }}" class="navbar-brand">
+        <a href="{{ route('homepage') }}" class="navbar-brand">
             <img src="{{ asset('images/logo_citra.png') }}" alt="AdminLTE Logo" class="brand-image"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">{{ config('app.name', 'UKMCS') }}</span>
@@ -32,11 +32,6 @@
                         </li>
                     @endif
                 @endauth
-
-                <li class="nav-item">
-                    <a href="{{ route('about') }}"
-                       class="nav-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
-                </li>
             </ul>
         </div>
 

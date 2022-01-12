@@ -26,8 +26,8 @@ if (\Illuminate\Support\Facades\App::environment('local')) {
 }
 
 Route::get('/', function () {
-    return redirect("/login");
-});
+    return view('welcome');
+})->name('homepage');
 
 Route::get('/template', function () {
     return view('template');
@@ -49,7 +49,10 @@ Route::middleware('auth')->group(function () {
 
     // Route for System Admin
     Route::middleware('role:admin')->group(function () {
+        Route::get('/citra/import', [\App\Http\Controllers\Admin\CitraController::class, 'import'])->name('citra.import');
         Route::get('/citra/export', [\App\Http\Controllers\Admin\CitraController::class, 'export'])->name('citra.export');
+
+        Route::post('/citra/import', [\App\Http\Controllers\Admin\CitraController::class, 'storeImport'])->name('citra.import.store');
         Route::resource('citra', \App\Http\Controllers\Admin\CitraController::class);
         Route::resource('citra.lecturer', \App\Http\Controllers\Admin\CitraLecturer::class)->except(['show', 'edit', 'update']);
         Route::resource('feedback', \App\Http\Controllers\FeedbackController::class)->except(['create', 'store']);
@@ -84,10 +87,6 @@ Route::middleware('auth')->group(function () {
         Route::post('search_lecturer', [\App\Http\Controllers\Admin\CitraController::class, 'search'])->name('find_lecturer');
         //Route::post('assign_lecturer', [\App\Http\Controllers\Admin\CitraController::class, 'assignLecturer'])->name('assign_lecturer');
     });
-});
-
-Route::get('asd', function () {
-    abort(500);
 });
 
 // Laravel Authentication Library

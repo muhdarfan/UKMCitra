@@ -1,5 +1,7 @@
 {
-    "/js/app.js": "/js/app.js?id=db75eb0d1dd948b9d3f8",
-    "/js/adminlte.js": "/js/adminlte.js?id=da627a5b8ad4145ea73b",
-    "/css/app.css": "/css/app.css?id=38a591ded2d107483718"
+    "/js/app.js": "/js/app.js",
+    "/js/adminlte.js": "/js/adminlte.js",
+    "/js/homepage.js": "/js/homepage.js",
+    "/css/homepage.css": "/css/homepage.css",
+    "/css/app.css": "/css/app.css"
 }

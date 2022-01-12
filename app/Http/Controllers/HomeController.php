@@ -63,7 +63,7 @@ class HomeController extends Controller
 
             // Application Submitted by Date
             $applicationsDateDB = DB::table('application')->selectRaw('COUNT(application_id) as cnt, SUM(if(status = "approved", 1, 0)) as approved, SUM(if(status = "pending", 1, 0)) as pending, SUM(if(status = "rejected", 1, 0)) as rejected, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
-                ->whereDate('created_at', '>=', Carbon::now()->subDays(7))
+                ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
                 ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
                 ->groupBy('fdate')->get()
                 ->mapWithKeys(function ($item) {
@@ -72,7 +72,7 @@ class HomeController extends Controller
 
             $applicationsDate = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
                 return [$date->format('d/m/Y') => ["all" => 0, "rejected" => 0, 'approved' => 0]];
-            })->merge($applicationsDateDB);
+            })->merge($applicationsDateDB)->sortKeys();
 
             // POPULAR COURSES
             $topCourses = DB::table('application as a')->join('citras as c', 'c.courseCode', '=', 'a.courseCode')

@@ -20,12 +20,7 @@
                     <a href="{{ route('citra.create') }}" class="btn btn-app bg-gradient-primary">
                         <i class="fas fa-plus"></i> Add
                     </a>
-                    <a class="btn btn-app bg-gradient-warning">
-                        <div class="ribbon-wrapper">
-                            <div class="ribbon bg-danger">
-                                Not Ready
-                            </div>
-                        </div>
+                    <a href="{{ route('citra.import') }}" class="btn btn-app bg-gradient-warning">
                         <i class="fas fa-cloud-upload-alt"></i> Import
                     </a>
                     <a href="{{ route('citra.export') }}" class="btn btn-app bg-gradient-info">
@@ -52,22 +47,34 @@
 
                 <div class="card">
                     <div class="list-group list-group-flush">
-                        <a href="{{ route('citra.index', ['category' => 'C1']) }}" class="list-group-item {{ Request::input('category') === 'C1' ? 'active' : '' }}">C1 <span
+                        <a href="{{ route('citra.index', ['category' => 'C1']) }}"
+                           class="list-group-item {{ Request::input('category') === 'C1' ? 'active' : '' }}">C1 -
+                            Literasi Bahasa dan Komunikasi <span
                                 class="float-right badge badge-light round">{{ $citraCategory['C1']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citra.index', ['category' => 'C2']) }}" class="list-group-item {{ Request::input('category') === 'C2' ? 'active' : '' }}">C2 <span
+                        <a href="{{ route('citra.index', ['category' => 'C2']) }}"
+                           class="list-group-item {{ Request::input('category') === 'C2' ? 'active' : '' }}">C2 -
+                            Pemikiran Kreatif dan Reka Cipta<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C2']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citra.index', ['category' => 'C3']) }}" class="list-group-item {{ Request::input('category') === 'C3' ? 'active' : '' }}">C3 <span
+                        <a href="{{ route('citra.index', ['category' => 'C3']) }}"
+                           class="list-group-item {{ Request::input('category') === 'C3' ? 'active' : '' }}">C3 -
+                            Literasi Sastera, Budaya dan Ketamadunan<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C3']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citra.index', ['category' => 'C4']) }}" class="list-group-item {{ Request::input('category') === 'C4' ? 'active' : '' }}">C4 <span
+                        <a href="{{ route('citra.index', ['category' => 'C4']) }}"
+                           class="list-group-item {{ Request::input('category') === 'C4' ? 'active' : '' }}">C4 -
+                            Literasi Sains, Teknologi dan Kesihatan<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C4']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citra.index', ['category' => 'C5']) }}" class="list-group-item {{ Request::input('category') === 'C5' ? 'active' : '' }}">C5 <span
+                        <a href="{{ route('citra.index', ['category' => 'C5']) }}"
+                           class="list-group-item {{ Request::input('category') === 'C5' ? 'active' : '' }}">C5 -
+                            Keusahawanan dan Tanggungjawab Sosial<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C5']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citra.index', ['category' => 'C6']) }}" class="list-group-item {{ Request::input('category') === 'C6' ? 'active' : '' }}">C6 <span
+                        <a href="{{ route('citra.index', ['category' => 'C6']) }}"
+                           class="list-group-item {{ Request::input('category') === 'C6' ? 'active' : '' }}">C6 -
+                            Keterampilan Diri dan Pasukan<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C6']->cnt ?? 0 }}</span>
                         </a>
                     </div>
