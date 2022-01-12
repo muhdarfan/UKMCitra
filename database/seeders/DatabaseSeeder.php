@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CitraSeeder::class,
             UserSeeder::class,
-            ApplicationSeeder::class
+            ApplicationSeeder::class,
+            FeedbackSeeder::class
         ]);
     }
 }

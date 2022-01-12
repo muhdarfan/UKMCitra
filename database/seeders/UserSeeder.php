@@ -6,6 +6,9 @@ use App\Models\Application;
 use App\Models\Citra;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -32,15 +35,6 @@ class UserSeeder extends Seeder
         ]);
 
         // Lecturer
-        DB::table('users')->insert([
-            'matric_no' => 'K123',
-            'name' => 'Awnar bin Bujang',
-            'email' => 'K123@ukm.my',
-            'password' => Hash::make('password'), // password
-            'remember_token' => Str::random(10),
-            'role' => 'lecturer',
-            'phone' => '011-2345510'
-        ]);
 
         DB::table('users')->insert([
             'matric_no' => 'K1234',
@@ -60,6 +54,17 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
             'role' => 'lecturer',
             'phone' => '011-2342510'
+        ]);
+        */
+
+        DB::table('users')->insert([
+            'matric_no' => 'K123',
+            'name' => 'Awnar bin Bujang',
+            'email' => 'K123@ukm.my',
+            'password' => Hash::make('password'), // password
+            'remember_token' => Str::random(10),
+            'role' => 'lecturer',
+            'phone' => '011-2345510'
         ]);
 
         // Student
@@ -98,7 +103,6 @@ class UserSeeder extends Seeder
             'session_enter' => '20202021',
         ]);
 
-
         DB::table('users')->insert([
             'matric_no' => 'A12345',
             'name' => 'Aina Batrisyia',
@@ -115,6 +119,5 @@ class UserSeeder extends Seeder
             'credit_limit' => 25,
             'session_enter' => '20192020',
         ]);
-        */
     }
 }

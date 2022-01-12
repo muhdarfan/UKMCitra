@@ -53,7 +53,7 @@
 
         <!-- Main content -->
         <div class="content">
-            <div class="container">
+            <div class="container pb-1">
                 @yield('content')
             </div><!-- /.container-fluid -->
         </div>

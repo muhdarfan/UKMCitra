@@ -32,6 +32,11 @@
                         </li>
                     @endif
                 @endauth
+
+                <li class="nav-item">
+                    <a href="{{ route('about') }}"
+                       class="nav-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
+                </li>
             </ul>
         </div>
 
@@ -45,7 +50,7 @@
                     </li>
                 @endif
 
-                <!-- Notifications Dropdown Menu -->
+            <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>

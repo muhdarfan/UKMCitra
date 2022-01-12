@@ -41,22 +41,22 @@
 
                 <div class="card">
                     <div class="list-group list-group-flush">
-                        <a href="{{ route('citras.index', ['category' => 'C1']) }}" class="list-group-item">C1 <span
+                        <a href="{{ route('citras.index', ['category' => 'C1']) }}" class="list-group-item">C1 - Literasi Bahasa dan Komunikasi<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C1']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citras.index', ['category' => 'C2']) }}" class="list-group-item">C2 <span
+                        <a href="{{ route('citras.index', ['category' => 'C2']) }}" class="list-group-item">C2 - Pemikiran Kreatif dan Reka Cipta<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C2']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citras.index', ['category' => 'C3']) }}" class="list-group-item">C3 <span
+                        <a href="{{ route('citras.index', ['category' => 'C3']) }}" class="list-group-item">C3 - Literasi Sastera, Budaya dan Ketamadunan<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C3']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citras.index', ['category' => 'C4']) }}" class="list-group-item">C4 <span
+                        <a href="{{ route('citras.index', ['category' => 'C4']) }}" class="list-group-item">C4 - Literasi Sains, Teknologi dan Kesihatan<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C4']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citras.index', ['category' => 'C5']) }}" class="list-group-item">C5 <span
+                        <a href="{{ route('citras.index', ['category' => 'C5']) }}" class="list-group-item">C5 - Keusahawanan dan Tanggungjawab Sosial<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C5']->cnt ?? 0 }}</span>
                         </a>
-                        <a href="{{ route('citras.index', ['category' => 'C6']) }}" class="list-group-item">C6 <span
+                        <a href="{{ route('citras.index', ['category' => 'C6']) }}" class="list-group-item">C6 - Keterampilan Diri dan Pasukan<span
                                 class="float-right badge badge-light round">{{ $citraCategory['C6']->cnt ?? 0 }}</span>
                         </a>
                     </div>

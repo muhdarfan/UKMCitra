@@ -43,6 +43,9 @@
                             </div>
                         </div>
 
+                        <input type="hidden" name="featured" value="0" />
+
+                        <!--
                         <div class="form-group row">
                             <label for="inputFeatured" class="col-sm-2 col-form-label">Featured</label>
                             <div class="col-sm-10">
@@ -62,6 +65,7 @@
                                 @enderror
                             </div>
                         </div>
+                        -->
                     </div>
                     <!-- /.card-body -->
 

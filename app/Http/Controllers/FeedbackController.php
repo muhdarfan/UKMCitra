@@ -26,7 +26,7 @@ class FeedbackController extends Controller
     {
         //
         return view('admin.feedback.index', [
-            'feedback' => Feedback::with('author')->paginate(5)
+            'feedback' => Feedback::with('author')->orderByDesc('created_at')->orderByDesc('id')->paginate(5)
         ]);
     }
 
