@@ -39,6 +39,7 @@ class HomeController extends Controller
             $coursesCount = Citra::count();
             $applicationCount = Application::count();
             $applicantCount = DB::table('application')->select('matric_no')->distinct()->get()->count();
+            $filledCitrasCount = DB::table('application')->select('courseCode')->distinct()->get()->count();
             $feedbackCount = Feedback::count();
 
             $fullCoursesCount = DB::table('application as a')->join('citras as c', 'c.courseCode', '=', 'a.courseCode')
@@ -75,16 +76,20 @@ class HomeController extends Controller
             })->merge($applicationsDateDB)->sortKeys();
 
             // POPULAR COURSES
+            // Order by
+            // 1. High Application Count
+            // 2. Low availability
+            // 3. Date
             $topCourses = DB::table('application as a')->join('citras as c', 'c.courseCode', '=', 'a.courseCode')
-                ->groupBy('a.courseCode')
-                ->orderBy('cntLeft', 'ASC')
-                ->orderByDesc('cnt')
-                ->orderBy('last_submit', 'ASC')
                 ->selectRaw('c.courseCode, c.courseName, c.courseAvailability, MAX(a.created_at) as last_submit, COUNT(a.application_id) as cnt, SUM(if(status = "approved", 1, 0)) as approved, (CAST(c.courseAvailability AS SIGNED) - SUM(if(status = "approved", 1, 0))) as cntLeft')
+                ->groupBy('a.courseCode')
+                ->orderBy('cnt', 'DESC')
+                ->orderBy('cntLeft', 'ASC')
+                ->orderBy('last_submit', 'ASC')
                 ->limit(4)
                 ->get();
 
-            return view('admin.dashboard', compact('fullCoursesCount', 'coursesCount', 'applicantCount', 'feedbackCount', 'topCourses', 'applicationsStats', 'applicationCount', 'applicationStatus', 'applicationsDate'));
+            return view('admin.dashboard', compact('fullCoursesCount', 'coursesCount', 'applicantCount', 'filledCitrasCount', 'feedbackCount', 'topCourses', 'applicationsStats', 'applicationCount', 'applicationStatus', 'applicationsDate'));
         } else {
             return view('dashboard', compact('announcement'));
         }

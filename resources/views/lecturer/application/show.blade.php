@@ -55,16 +55,6 @@
                 <div class="card-body">
 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control-plaintext"
-                                   value="{{ $application->applicant->name }}"
-                                   id="name"
-                                   placeholder="Name" readonly/>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <label for="matric" class="col-sm-2 col-form-label">Matric Number</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control-plaintext" value="{{ $application->matric_no }}"
@@ -73,20 +63,29 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="faculty" class="col-sm-2 col-form-label">Faculty</label>
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control-plaintext"
-                                   value="{{ $application->applicant->studentInfo->faculty }}"
-                                   id="faculty" placeholder="Faculty" readonly/>
+                                   value="{{ $application->applicant->name }}" id="name" placeholder="Student Name"
+                                   readonly/>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="faculty" class="col-sm-2 col-form-label">Session</label>
+                        <label for="faculty" class="col-sm-2 col-form-label">Faculty</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control-plaintext"
-                                   value="{{ $application->applicant->studentInfo->session_enter }}"
-                                   id="faculty" placeholder="Faculty" readonly/>
+                                   value="{{ $application->applicant->studentInfo->faculty }}" id="faculty"
+                                   placeholder="Faculty" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="sessionEnter" class="col-sm-2 col-form-label">Session Enter</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->applicant->studentInfo->session_enter }}" id="sessionEnter"
+                                   placeholder="Session Enter" readonly/>
                         </div>
                     </div>
 
@@ -94,9 +93,8 @@
                         <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control-plaintext"
-                                   value="{{ $application->applicant->phone }}"
-                                   id="phone"
-                                   placeholder="Availability" readonly/>
+                                   value="{{ $application->applicant->phone }}" id="phone" placeholder="Phone Number"
+                                   readonly/>
                         </div>
                     </div>
                 </div>
@@ -109,6 +107,7 @@
                     <h3 class="card-title">Extra Information</h3>
                 </div>
                 <div class="card-body">
+
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="currentCredit">Current Credit</label>
@@ -122,23 +121,39 @@
                                    placeholder="Credit Allowed" readonly>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="courseName" class="col-sm-2 col-form-label">Course Name</label>
-                        <div class="col-sm-10">
+                        <div class="form-group col-md-6">
+                            <label for="courseCode">Course Code</label>
                             <input type="text" class="form-control-plaintext"
-                                   value="{{ $application->course->courseName }}"
-                                   id="phone"
-                                   placeholder="Couse Name" readonly>
+                                   value="{{ $application->course->courseCode }}"
+                                   id="courseCode" placeholder="Course Code" readonly>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="reason" class="col-sm-2 col-form-label">Reason</label>
-                        <div class="col-sm-10">
-                    <textarea readonly class="form-control-plaintext" rows="3"
-                              placeholder="Reason">{{ $application->reason }}</textarea>
+
+                        <div class="form-group col-md-6">
+                            <label for="courseName">Course Name</label>
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->course->courseName }}" id="courseName"
+                                   placeholder="Course Name" readonly>
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="createdAt" class="col-sm-2 col-form-label">Applied at</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                   value="{{ $application->created_at->format('d M, Y H:i a') }}" id="createdAt"
+                                   placeholder="Applied at" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="reason" class="col-sm-2 col-form-label">Reason</label>
+                        <div class="col-sm-10">
+                            <textarea readonly class="form-control-plaintext" rows="3"
+                                      placeholder="Reason">{{ $application->reason }}</textarea>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.card-body -->

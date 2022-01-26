@@ -50,6 +50,10 @@ class Citra extends Model
         return $this->courseAvailability > $this->application()->where('status', 'approved')->count();
     }
 
+    public function hasApplication() {
+        return auth()->user()->applications->contains('courseCode', $this->courseCode);
+    }
+
     public function scopeSearch($query, $search, $category) {
         if (isset($category)) {
             $query->where('courseCategory', '=', $category);

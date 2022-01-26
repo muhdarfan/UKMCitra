@@ -34,9 +34,9 @@
                         </div>
 
                         <div id="subjects" class="form-group">
-                            @php $color = collect(['success', 'secondary', 'primary', 'info']) @endphp
+                            @php $color = collect(['C1' => 'primary', 'C2' => 'maroon', 'C3' => 'olive', 'C4' => 'purple', 'C5' => 'orange', 'C6' => 'lightblue']) @endphp
                             @foreach(auth()->user()->citras as $citra)
-                                <a class="badge text-md badge-{{ $color->random() }}"
+                                <a class="badge text-md bg-{{ $color->get($citra->courseCategory) ?? 'dark' }}"
                                    href="{{ route('application.index', ['course' => $citra->courseCode ]) }}"><span>{{ $citra->courseCode }}</span></a>
                             @endforeach
                         </div>

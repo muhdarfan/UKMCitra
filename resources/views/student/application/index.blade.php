@@ -1,17 +1,13 @@
-@extends('layouts.app-basic', ['title' => 'Application Status'])
+@extends('layouts.app-basic', ['title' => 'My Application'])
 
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">List of Application Status</h3>
-                </div>
-                <!-- /.card-header -->
 
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th style="width: 20%">Course Code</th>

@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()->count(15)->role('lecturer')->has(Citra::factory()->count(1))->create();
-        User::factory()->count(25)->role('student')->has(Application::factory()->count(1), 'applications')->create();
+        User::factory()->count(25)->role('student')->has(Application::factory()->count(3), 'applications')->create();
         User::factory()->count(3)->role('admin')->create();
         /*
         // ADMIN
@@ -81,6 +81,7 @@ class UserSeeder extends Seeder
         DB::table('student_information')->insert([
             'matric_no' => 'A123',
             'faculty' => 'FTSM',
+            'program_code' => 'KC04',
             'credit_limit' => 20,
             'session_enter' => '20182019',
         ]);
@@ -99,6 +100,7 @@ class UserSeeder extends Seeder
         DB::table('student_information')->insert([
             'matric_no' => 'A1234',
             'faculty' => 'FKAB',
+            'program_code' => 'KA03',
             'credit_limit' => 23,
             'session_enter' => '20202021',
         ]);
@@ -116,6 +118,7 @@ class UserSeeder extends Seeder
         DB::table('student_information')->insert([
             'matric_no' => 'A12345',
             'faculty' => 'FST',
+            'program_code' => 'ST01',
             'credit_limit' => 25,
             'session_enter' => '20192020',
         ]);

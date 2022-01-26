@@ -178,6 +178,16 @@ class CitraController extends Controller
             'descriptions' => 'required',
         ]);
 
+        $newAvailability = $request->input('courseAvailability');
+
+        if ($newAvailability > $citra->courseAvailability) {
+            // TODO
+            // Accept pending students
+            // Prioritize:
+            // 1. the earliest application
+            // 2.
+        }
+
         $citra->update($request->all());
 
         return redirect()->route('citra.index')->with('success', 'Course updated successfully');

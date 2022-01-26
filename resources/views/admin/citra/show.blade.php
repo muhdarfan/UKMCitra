@@ -316,7 +316,9 @@
                         },
                         grid: {
                             display: false,
-                        }
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
                     }
                 }
             }

@@ -49,9 +49,21 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (User $user) {
+            $fac = $this->faker->randomElement(['FTSM', 'FKAB', 'FEP', 'FST']);
+
+            $prog = 'KC0'; // Default FTSM
+            if ($fac === 'FKAB') {
+                $prog = 'KA0';
+            } elseif ($fac === 'FEP') {
+                $prog = 'FE0';
+            } elseif ($fac === 'FST') {
+                $prog = 'ST0';
+            }
+
             DB::table('student_information')->insert([
                 'matric_no' => $user->matric_no,
-                'faculty' => $this->faker->randomElement(['FTSM', 'FKAB', 'FEP', 'FST']),
+                'faculty' =>  $fac,
+                'program_code' => $prog . $this->faker->numberBetween(1, 4),
                 'credit_limit' => $this->faker->numberBetween(18, 24),
                 'session_enter' => $this->faker->randomElement(['20182019', '20192020', '20202021']),
             ]);

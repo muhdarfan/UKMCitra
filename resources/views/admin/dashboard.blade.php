@@ -155,7 +155,7 @@
                         <!-- /.col -->
                         <div class="col-sm-3 col-6">
                             <div class="description-block border-right">
-                                <h5 class="description-header">??</h5>
+                                <h5 class="description-header">{{ $filledCitrasCount }}</h5>
                                 <span class="description-text">UNIQUE COURSES</span>
                             </div>
                             <!-- /.description-block -->
@@ -270,7 +270,9 @@
                         },
                         grid: {
                             display: false,
-                        }
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
                     }
                 }
             }

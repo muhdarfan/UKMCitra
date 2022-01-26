@@ -34,7 +34,7 @@
                             </div>
                         </div>
 
-                        <hr />
+                        <hr/>
 
                         <div class="form-group row">
                             <label for="coursecode" class="col-sm-4 col-form-label">Course Code</label>

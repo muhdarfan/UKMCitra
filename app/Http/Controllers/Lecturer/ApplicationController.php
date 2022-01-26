@@ -60,7 +60,7 @@ class ApplicationController extends Controller
             });
         }
 
-        $applications = $application->orderBy('application.application_id', 'desc')->paginate(10);
+        $applications = $application->orderByRaw("FIELD(application.status, 'pending') DESC")->orderBy('application.application_id', 'desc')->paginate(10);
 
         return view('lecturer.application.index', compact('applications', 'citra'));
 
@@ -82,6 +82,16 @@ class ApplicationController extends Controller
         */
         if ($request->user()->cannot('update', $application))
             return redirect()->route('application.index');
+
+        /*
+         * Priority Algorithm
+         * -------------------
+         * 1. Year
+         * 2. Faculty
+         * 3. Credit Needed (Bonus if same category)
+         * 4. CGPA
+         *
+         */
 
         return view('lecturer.application.show', compact('application'));
     }
