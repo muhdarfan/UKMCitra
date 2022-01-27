@@ -2,6 +2,15 @@
 
 @section('title', 'Dashboard')
 @section('content')
+    @if(isset($announcement))
+        <div class="col-12">
+            <div class="callout callout-info">
+                <h5><i class="fas fa-info"></i> Announcement:</h5>
+                {{ $announcement->message }}
+            </div>
+        </div>
+    @endif
+
     <!-- Info boxes -->
     <div class="row">
         <div class="col-12 col-sm-6 col-md-4">
@@ -92,7 +101,7 @@
                             <p class="text-center">
                                 <strong>Top 4 Courses</strong>
                                 <i class="fas fa-info-circle" data-toggle="tooltip"
-                                   title="Top 4 courses based on course availability, application count and time."></i></span>
+                                   title="Top 4 courses based on course availability, application count and time."></i>
                             </p>
 
                             <ul class="products-list product-list-in-card pl-2 pr-2">
@@ -195,7 +204,7 @@
                         <canvas id="pieChart"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     @else
-                        <div class="p text-center text-bold">We don’t have enough data to show anything useful.</div>
+                        <p class="text-center text-bold">We don’t have enough data to show anything useful.</p>
                     @endif
                 </div>
                 <!-- /.card-body -->
@@ -220,7 +229,7 @@
                         <canvas id="applicationStatusChart"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     @else
-                        <div class="p text-center text-bold">We don’t have enough data to show anything useful.</div>
+                        <p class="text-center text-bold">We don’t have enough data to show anything useful.</p>
                     @endif
                 </div>
                 <!-- /.card-body -->

@@ -87,7 +87,7 @@ class ApplicationController extends Controller
          * Priority Algorithm
          * -------------------
          * 1. Year
-         * 2. Faculty
+         * 2. Faculty (Specified Faculty for course)
          * 3. Credit Needed (Bonus if same category)
          * 4. CGPA
          *

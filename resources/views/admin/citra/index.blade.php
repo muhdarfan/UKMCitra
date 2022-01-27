@@ -114,7 +114,7 @@
                                     <td class="align-middle">{{ $citra->courseName }}</td>
                                     <td class="align-middle">{{ $citra->courseCredit }}</td>
                                     <td class="align-middle">{{ $citra->courseCategory }}</td>
-                                    <td class="align-middle">{{ $citra->application_count }}</td>
+                                    <td class="align-middle">{{ $citra->application_count }} / {{ $citra->courseAvailability }} students</td>
                                     <td class="align-middle text-center">
                                         <form action="{{ route('citra.destroy', $citra->courseCode) }}" method="POST">
                                             <a href="{{ route('citra.show', $citra->courseCode) }}"

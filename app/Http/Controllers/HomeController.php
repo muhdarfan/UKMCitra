@@ -83,15 +83,72 @@ class HomeController extends Controller
             $topCourses = DB::table('application as a')->join('citras as c', 'c.courseCode', '=', 'a.courseCode')
                 ->selectRaw('c.courseCode, c.courseName, c.courseAvailability, MAX(a.created_at) as last_submit, COUNT(a.application_id) as cnt, SUM(if(status = "approved", 1, 0)) as approved, (CAST(c.courseAvailability AS SIGNED) - SUM(if(status = "approved", 1, 0))) as cntLeft')
                 ->groupBy('a.courseCode')
-                ->orderBy('cnt', 'DESC')
                 ->orderBy('cntLeft', 'ASC')
+                ->orderBy('cnt', 'DESC')
                 ->orderBy('last_submit', 'ASC')
                 ->limit(4)
                 ->get();
 
-            return view('admin.dashboard', compact('fullCoursesCount', 'coursesCount', 'applicantCount', 'filledCitrasCount', 'feedbackCount', 'topCourses', 'applicationsStats', 'applicationCount', 'applicationStatus', 'applicationsDate'));
+            return view('admin.dashboard', compact(
+                'fullCoursesCount',
+                'coursesCount',
+                'applicantCount',
+                'filledCitrasCount',
+                'feedbackCount',
+                'topCourses',
+                'applicationsStats',
+                'applicationCount',
+                'applicationStatus',
+                'applicationsDate',
+                'announcement'
+            ));
         } else {
-            return view('dashboard', compact('announcement'));
+            $applications = DB::table('application')
+                ->join('citras_lecturer', 'application.courseCode', '=', 'citras_lecturer.courseCode')
+                ->join('citras', 'application.courseCode', '=', 'citras.courseCode')
+                ->join('users', 'application.matric_no', '=', 'users.matric_no')
+                ->join('student_information', 'application.matric_no', '=', 'student_information.matric_no')
+                ->selectRaw('application.application_id, application.matric_no, application.courseCode, application.status, application.created_at, citras.courseName, citras.courseAvailability, users.name, student_information.faculty, student_information.program_code, student_information.session_enter')
+                ->where('citras_lecturer.matric_no', '=', auth()->user()->matric_no)
+                ->get();
+
+            $courses = $applications->groupBy('courseCode')->mapWithKeys(function ($application, $course) {
+                $data = $application->first();
+
+                return [
+                    $course => [
+                        'applications' => $application->count(),
+                        'courseName' => $data->courseName,
+                        'courseAvailability' => $data->courseAvailability ?? 0,
+                        'isFull' => ($application->count() >= $data->courseAvailability),
+                    ]
+                ];
+            });
+
+            $applicationCount = $applications->count();
+            $facultyCount = $applications->groupBy('faculty')->map->count();
+
+            $statusCount = $applications->groupBy('status')->map->count();
+            $statusHolder = collect(['approved' => 0, 'pending' => 0, 'rejected' => 0])->merge($statusCount)->sortKeys();
+
+            $sessionCount = $applications->groupBy('session_enter')->mapWithKeys(function ($application, $session) {
+                return [
+                    "Year " . $this->calculateYear($session) => $application->count()
+                ];
+            });
+
+            $fullCoursesCount = $courses->where('isFull', '=', true)->count();
+
+            return view('lecturer.dashboard', compact(
+                'applications',
+                'courses',
+                'applicationCount',
+                'facultyCount',
+                'sessionCount',
+                'fullCoursesCount',
+                'statusHolder',
+                'announcement'
+            ));
         }
     }
 

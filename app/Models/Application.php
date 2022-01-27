@@ -18,7 +18,7 @@ class Application extends Model
         'courseCode',
         'reason',
         'status',
-        'semester'
+        'semester',
     ];
 
     public function getRouteKeyName()
@@ -34,6 +34,13 @@ class Application extends Model
     public function course()
     {
         return $this->belongsTo(Citra::class, 'courseCode');
+    }
+
+    public function getPointsAttribute($points = 0) {
+        if (in_array($this->applicant->studentInfo->year(), [1, 3]))
+            $points += 500;
+
+        return $points;
     }
 
     public function scopeByStatus($query, $status) {

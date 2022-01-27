@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(15)->role('lecturer')->has(Citra::factory()->count(1))->create();
-        User::factory()->count(25)->role('student')->has(Application::factory()->count(3), 'applications')->create();
+        User::factory()->count(15)->role('lecturer')->hasCitras(1)->create();
+        User::factory()->count(100)->role('student')->has(Application::factory()->count(2), 'applications')->create();
         User::factory()->count(3)->role('admin')->create();
         /*
         // ADMIN

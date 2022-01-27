@@ -81,7 +81,7 @@
                     <div class="card-header">
                         @switch(Request::input('category'))
                             @case('C1')
-                            <h3 class="card-title">Citra 1 - Literasi Bahasa dan Komunikasi</h3>
+                            <h3 class="card-title">Citra 1 - Etika, kewarganegaraan & ketamadunan</h3>
                             @break
 
                             @case('C2')
@@ -286,7 +286,7 @@
                                         @if($citra->application->contains('matric_no', auth()->user()->matric_no))
                                             <a href="{{ route('myApplication.show', $citra->application->where('matric_no', auth()->user()->matric_no)->first()->application_id) }}"
                                                target="_blank" class="btn btn-sm bg-gradient-info">View Application</a>
-                                        @else
+                                        @elseif($citra->courseAvailability !== 0)
                                             <button type="button" data-toggle="modal" data-target="#modal-register"
                                                     data-register="{{ $citra->isAvailable() ? 1 : 0 }}"
                                                     data-course="{{ base64_encode(collect($citra)->except(['application', 'descriptions', 'created_at', 'updated_at'])->toJson()) }}"
@@ -321,6 +321,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <form id="form-register" action="{{ route('myApplication.store') }}" method="POST">
                         @csrf

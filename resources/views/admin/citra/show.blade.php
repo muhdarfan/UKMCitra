@@ -70,12 +70,7 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="p-3">
-                        <img src="{{ asset('images/logo_ukm.png') }}"
-                             class="center-block d-block mx-auto img-fluid img-thumbnail"/>
-                    </div>
-
-                    {{$citra->descriptions}}
+                    {{ $citra->descriptions === '' ? 'No descriptions available.' : $citra->descriptions }}
                 </div>
                 <!-- /.card-body -->
 

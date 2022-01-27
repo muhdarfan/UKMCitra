@@ -26,7 +26,7 @@ if (\Illuminate\Support\Facades\App::environment('local')) {
 }
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 })->name('homepage');
 
 Route::get('/template', function () {
@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
     // Route for Lecturer
     Route::middleware('role:lecturer')->group(function () {
         Route::resource('application', \App\Http\Controllers\Lecturer\ApplicationController::class)->only(['index', 'show', 'update']);
-        Route::resource('mycitra', \App\Http\Controllers\Lecturer\MyCitraController::class)->only(['index', 'show']);
+        Route::resource('mycitra', \App\Http\Controllers\Lecturer\MyCitraController::class)->only(['index', 'show', 'update']);
     });
 
     // Route for Student

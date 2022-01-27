@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\CitrasExport;
 use App\Http\Controllers\Controller;
+use App\Imports\CitrasImport;
 use App\Models\Application;
 use App\Models\Citra;
 use Carbon\Carbon;
@@ -11,6 +12,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
 class CitraController extends Controller
 {
@@ -44,7 +46,28 @@ class CitraController extends Controller
 
     public function storeImport(Request $request)
     {
+        HeadingRowFormatter::default('none');
 
+        $request->validate([
+            'citraFile' => 'required|mimes:xlsx,csv',
+            'courseCode' => 'required',
+            'courseName' => 'required',
+            'courseCredit' => 'required',
+            'courseCategory' => 'required',
+            'courseAvailability' => 'required',
+            'descriptions' => 'required',
+        ]);
+
+        Excel::import(new CitrasImport(
+            $request->input('courseCode'),
+            $request->input('courseName'),
+            $request->input('courseCredit'),
+            $request->input('courseCategory'),
+            $request->input('courseAvailability'),
+            $request->input('descriptions'),
+        ), $request->file('citraFile'));
+
+        return redirect()->route('citra.index')->with('success', 'Citra Courses has been imported successfully.');
     }
 
     public function export()
@@ -182,10 +205,10 @@ class CitraController extends Controller
 
         if ($newAvailability > $citra->courseAvailability) {
             // TODO
-            // Accept pending students
+            // Accept pending students for certain quota
             // Prioritize:
             // 1. the earliest application
-            // 2.
+            // * Reject all application
         }
 
         $citra->update($request->all());

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Application Detail')
+@section('title') Application Detail #{{ $application->application_id }} @endsection
 @section('content')
     <div class="row">
         <div class="col-md-3">
@@ -20,7 +20,11 @@
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Priority</b> <a class="float-right">HIGH</a>
+                            <b>
+                                Priority
+                                <i class="fas fa-info-circle" data-toggle="tooltip"
+                                           title="Based on Current Year, Citra Course Category needed, and CGPA."></i></b>
+                            <a class="float-right">{{ $application->points > 499 ? 'HIGH' : 'MEDIUM' }}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Citra Course Taken</b> <a
@@ -28,6 +32,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="ribbon-wrapper ribbon-lg">
                     @php
                         $status = 'warning';
@@ -157,22 +162,27 @@
 
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
+                <div class="card-footer {{ ($application->status !== 'pending') ? 'text-center' : '' }}">
+                    <a href="{{ route('application.index') }}" class="btn btn-success"><i class="fas fa-arrow-alt-circle-left"></i> Back</a>
+
                     @if($application->status=='pending')
-                        <form action="{{ route('application.update', $application->application_id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                        <div class="float-right">
+                            <form action="{{ route('application.update', $application->application_id) }}"
+                                  method="POST">
+                                @csrf
+                                @method('PUT')
 
-                            <button class="btn bg-gradient-danger float-right mr-2" name="deact"
-                                    value="{{$application->application_id}}">
-                                Reject
-                            </button>
-                            <button class="btn bg-gradient-success float-right mr-2" name="act"
-                                    value="{{$application->application_id}}">
-                                Approve
-                            </button>
-                        </form>
+                                <button class="btn bg-gradient-danger float-right mr-2" name="deact"
+                                        value="{{$application->application_id}}">
+                                    Reject
+                                </button>
 
+                                <button class="btn bg-gradient-success float-right mr-2" name="act"
+                                        value="{{$application->application_id}}">
+                                    Approve
+                                </button>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>

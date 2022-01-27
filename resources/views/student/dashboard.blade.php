@@ -143,66 +143,6 @@
                 </div>
                 <!-- /.card-body -->
             </div>
-
-            <div class="card card-info card-outline">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Academic Report(s) Summary
-                    </h3>
-                </div>
-
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-sm">
-                            <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Credits</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>CW</td>
-                                <td>1/10</td>
-                            </tr>
-                            <tr>
-                                <td>CR</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>CL</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>C1</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>C2</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>C3</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>C4</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>C5</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>C6</td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 @endsection

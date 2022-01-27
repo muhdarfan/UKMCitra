@@ -26,13 +26,15 @@
             @if($citra->hasApplication())
                 <a href="{{ route('myApplication.show', $citra->application->where('matric_no', auth()->user()->matric_no)->first()->application_id) }}"
                    target="_blank" class="btn btn-block btn-info">View Application</a>
-            @else
+
+                <hr/>
+            @elseif($citra->courseAvailability > 0)
                 <button data-toggle="modal" data-target="#modal-register" type="button"
                         class="btn btn-block btn-success">Register
                 </button>
-            @endif
 
-            <hr/>
+                <hr/>
+            @endif
 
             <div class="card card-info card-outline">
                 <div class="card-header">
@@ -78,6 +80,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <form id="form-register" action="{{ route('myApplication.store') }}" method="POST">
                         @csrf

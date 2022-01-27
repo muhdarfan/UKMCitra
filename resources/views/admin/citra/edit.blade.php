@@ -29,8 +29,8 @@
                         <div class="form-group row">
                             <label for="coursecode" class="col-sm-2 col-form-label">Course Code</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{ $citra->courseCode }}" id="coursecode"
-                                       name="courseCode" placeholder="Course Code"/>
+                                <input type="text" class="form-control-plaintext" value="{{ $citra->courseCode }}" id="coursecode"
+                                       name="courseCode" placeholder="Course Code" readonly />
                             </div>
                         </div>
 
