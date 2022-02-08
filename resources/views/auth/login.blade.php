@@ -58,7 +58,7 @@
 
                 <div class="input-group mb-3">
                     <input name="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                           placeholder="Password" required/>
+                           placeholder="Kata Laluan" required/>
 
                     <div class="input-group-append">
                         <div class="input-group-text">

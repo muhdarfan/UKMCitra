@@ -18,6 +18,7 @@ class ApplicationFactory extends Factory
      */
     public function definition()
     {
+        /*
         $citras = ['LMCB1412', 'LMCA1402', 'LMCA1442', 'LMCA1432', 'LMCB1432'];
         $citra = Citra::find($citras[array_rand($citras)]);
 
@@ -29,17 +30,20 @@ class ApplicationFactory extends Factory
         // masukkan ke random citra
 
         if (!$citra->isAvailable()) {
-            if ($citra->application->count() - $citra->courseAvailability >= 10) {
+            if ($citra->availableSlot() >= 10) {
                 $citra = Citra::whereNotIn('courseCode', $citras)->inRandomOrder()->first();
             } else {
                 $status = $this->faker->randomElement(['pending', 'rejected']);
             }
         }
+        */
 
         return [
-            'courseCode' => $citra->courseCode,
+            //'courseCode' => $citra->courseCode,
+            'courseCode' => Citra::inRandomOrder()->first()->courseCode,
             'reason' => $this->faker->text(30),
-            'status' => $status,
+            //'status' => $status,
+            'status' => $this->faker->randomElement(['pending', 'rejected', 'approved']),
             //'session' => config('app.session'),
             'session' => $this->faker->randomElement(['20182019', '20192020', '20202021', '20212022']),
             'semester' => $this->faker->numberBetween(1, 2),

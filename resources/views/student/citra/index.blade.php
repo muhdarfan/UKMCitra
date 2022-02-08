@@ -287,8 +287,9 @@
                                             <a href="{{ route('myApplication.show', $citra->application->where('matric_no', auth()->user()->matric_no)->first()->application_id) }}"
                                                target="_blank" class="btn btn-sm bg-gradient-info">View Application</a>
                                         @elseif($citra->courseAvailability !== 0)
+                                        <!-- data-register="{{ $citra->isAvailable() ? 1 : 0 }}" -->
                                             <button type="button" data-toggle="modal" data-target="#modal-register"
-                                                    data-register="{{ $citra->isAvailable() ? 1 : 0 }}"
+                                                    data-register="0"
                                                     data-course="{{ base64_encode(collect($citra)->except(['application', 'descriptions', 'created_at', 'updated_at'])->toJson()) }}"
                                                     class="btn btn-sm bg-gradient-success">Register
                                             </button>
@@ -312,7 +313,7 @@
     </div>
 
     <!-- MODAL -->
-    <div class="modal fade" id="modal-register">
+    <div class="modal fade" id="modal-register" data-backdrop="static" data-keyboard="false" tabindex="-1" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -366,7 +367,8 @@
                         <div class="form-group form-input-reason d-none">
                             <label for="inputReason">Reason</label>
                             <textarea class="form-control" id="inputReason" name="reason" style="resize: none"
-                                      rows="3" required></textarea>
+                                      rows="3" onkeyup="countChar(this)" minlength="10" required></textarea>
+                            <small class="form-text text-muted float-right"><span id="reasonCharCounter">0</span>/128</small>
                         </div>
 
                     </form>
@@ -405,6 +407,8 @@
                 modal.find('.modal-body input#inputCourseCategory').val(courseInfo.courseCategory)
                 modal.find('.modal-body input#inputCourseCredit').val(`${courseInfo.courseCredit}`)
                 modal.find('.modal-body input[name=courseCode]').val(courseInfo.courseCode)
+                modal.find('.modal-body textarea#inputReason').val('')
+                modal.find('.modal-body #reasonCharCounter').text('0')
             });
 
             $("#modal-register").on('hidden.bs.modal', function (event) {
@@ -413,5 +417,11 @@
                 modal.find('.modal-body .form-input-reason').addClass('d-none');
             });
         });
+
+        function countChar(val) {
+            let len = val.value.length;
+
+            $('.modal-body #reasonCharCounter').text(len);
+        };
     </script>
 @endpush

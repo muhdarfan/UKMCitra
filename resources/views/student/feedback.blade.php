@@ -23,7 +23,8 @@
                                 <label for="inputFeedback">Feedback</label>
                                 <textarea class="form-control @error('feedback') is-invalid @enderror"
                                           id="inputFeedback" rows="4" style="max-height: 150px;" name="feedback"
-                                          placeholder="Enter feedback">{{ old('feedback') }}</textarea>
+                                          placeholder="Enter feedback" onkeyup="countChar(this)">{{ old('feedback') }}</textarea>
+                                <small class="form-text text-muted float-right"><span id="reasonCharCounter">{{ old('feedback') !== null ? strlen(old('feedback')) : 0 }}</span>/128</small>
 
                                 @error('feedback')
                                 <span class="invalid-feedback" role="alert">
@@ -44,3 +45,13 @@
     </div>
     <!-- /.row -->
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        function countChar(val) {
+            let len = val.value.length;
+
+            $('#reasonCharCounter').text(len);
+        };
+    </script>
+@endpush

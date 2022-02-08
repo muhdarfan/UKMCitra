@@ -51,7 +51,7 @@ class FeedbackController extends Controller
     {
         //
         $request->validate([
-            'feedback' => 'required|max:300'
+            'feedback' => 'required|min:10|max:256'
         ]);
 
         Feedback::create([

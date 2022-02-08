@@ -40,18 +40,20 @@ class MyApplicationController extends Controller
             return redirect()->route('citras.index')->with('data', ['type' => 'danger', 'message' => 'Citra course not found.']);
 
         if ($citra->application->contains('matric_no', auth()->user()->matric_no))
-            return redirect()->route('citras.index')->with('data', ['type' => 'danger', 'message' => 'Application already exists.']);
+            return redirect()->route('citras.index')->withErrors(['reason' => 'Application already exists.']);
+            //return redirect()->route('citras.index')->with('data', ['type' => 'danger', 'message' => 'Application already exists.']);
 
-        if (!$citra->isAvailable()) {
+        //if (!$citra->isAvailable()) {
             $request->validate([
-                'reason' => 'required|max:255'
+                'reason' => 'required|min:10|max:128'
             ]);
-        }
+        //}
 
         Application::create([
             'matric_no' => auth()->user()->matric_no,
             'courseCode' => $citra->courseCode,
-            'reason' => $citra->isAvailable() ? 'Course Available' : $request->input('reason'),
+            //'reason' => $citra->isAvailable() ? 'Course Available' : $request->input('reason'),
+            'reason' => $request->input('reason'),
             'status' => $citra->isAvailable() ? 'approved' : 'pending',
             'session' => env('APP_CURRENT_SESSION'),
             'semester' => env('APP_CURRENT_SEMESTER', '1')

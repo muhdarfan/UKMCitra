@@ -56,12 +56,32 @@ class UserSeeder extends Seeder
             'phone' => '011-2342510'
         ]);
         */
+        // ADMIN
+        DB::table('users')->insert([
+            'matric_no' => 'D174652',
+            'name' => 'Encik Arfan',
+            'email' => 'D174652@ukm.my',
+            'password' => Hash::make('password'), // password
+            'remember_token' => Str::random(10),
+            'role' => 'admin',
+            'phone' => '011-33900016'
+        ]);
+
+        DB::table('users')->insert([
+            'matric_no' => 'D123456',
+            'name' => 'Muhammad Arfan',
+            'email' => 'D123456@ukm.my',
+            'password' => Hash::make('Admin1234'), // password
+            'remember_token' => Str::random(10),
+            'role' => 'admin',
+            'phone' => '011-33900016'
+        ]);
 
         DB::table('users')->insert([
             'matric_no' => 'K123',
             'name' => 'Awnar bin Bujang',
             'email' => 'K123@ukm.my',
-            'password' => Hash::make('password'), // password
+            'password' => Hash::make('MyPassword321'), // password
             'remember_token' => Str::random(10),
             'role' => 'lecturer',
             'phone' => '011-2345510'
@@ -72,7 +92,7 @@ class UserSeeder extends Seeder
             'matric_no' => 'A123',
             'name' => 'Putera Niq',
             'email' => 'A123@siswa.ukm.edu.my',
-            'password' => Hash::make('password'), // password
+            'password' => Hash::make('IniPasswordSaya'), // password
             'remember_token' => Str::random(10),
             'role' => 'student',
             'phone' => '019-8918231'

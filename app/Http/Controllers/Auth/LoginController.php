@@ -44,6 +44,14 @@ class LoginController extends Controller
         return 'matric_no';
     }
 
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string|min:4|max:7',
+            'password' => 'required|string|min:8|max:32',
+        ]);
+    }
+
     protected function loggedOut(Request $request)
     {
         return redirect()->route('login');

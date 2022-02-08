@@ -24,8 +24,7 @@ class StoreApplicationRequest extends FormRequest
     public function rules()
     {
         return [
-            'courseCode' => 'required',
-            //
+            //'courseCode' => 'required|min:6|max:8|regex:/([A-Z\/a-z]{4}[1-9]{4})+/',
         ];
     }
 }
