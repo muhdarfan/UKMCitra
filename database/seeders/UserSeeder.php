@@ -58,6 +58,26 @@ class UserSeeder extends Seeder
         */
 
         DB::table('users')->insert([
+            'matric_no' => 'D123456',
+            'name' => 'Muhammad Arfan',
+            'email' => 'D123456@ukm.my',
+            'password' => Hash::make('password'), // password
+            'remember_token' => Str::random(10),
+            'role' => 'admin',
+            'phone' => '011-33900016'
+        ]);
+
+        DB::table('users')->insert([
+            'matric_no' => 'D174652',
+            'name' => 'Encik Arfan',
+            'email' => 'D174652@ukm.my',
+            'password' => Hash::make('password'), // password
+            'remember_token' => Str::random(10),
+            'role' => 'admin',
+            'phone' => '011-33900015'
+        ]);
+
+        DB::table('users')->insert([
             'matric_no' => 'K123',
             'name' => 'Awnar bin Bujang',
             'email' => 'K123@ukm.my',
