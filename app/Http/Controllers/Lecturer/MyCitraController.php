@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Lecturer;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
-use App\Models\Citra;
 use Illuminate\Http\Request;
 
 class MyCitraController extends Controller

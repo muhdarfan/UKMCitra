@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Application;
 use App\Models\Citra;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

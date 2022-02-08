@@ -4,13 +4,12 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Citra;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AddCitraCoursesTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     /**
      * TestCase: Add Citra Courses
