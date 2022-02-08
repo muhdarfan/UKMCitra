@@ -105,11 +105,11 @@ class CitraController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'courseCode' => 'required',
+            'courseCode' => 'required|unique:citras,courseCode',
             'courseName' => 'required|max:256',
-            'courseCredit' => 'required|numeric|min:0',
+            'courseCredit' => 'required|numeric|min:1|max:3',
             'courseCategory' => 'required|in:C1,C2,C3,C4,C5,C6',
-            'courseAvailability' => 'required|numeric|min:0',
+            'courseAvailability' => 'required|numeric|min:1',
             'descriptions' => 'required',
 
         ]);
