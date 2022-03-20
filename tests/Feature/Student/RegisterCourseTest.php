@@ -24,7 +24,6 @@ class RegisterCourseTest extends TestCase
         $user = User::find('A123');
         $citra = Citra::inRandomOrder()->first();
 
-
         $response = $this->actingAs($user)->from('/citras')->post('/myApplication', [
             'courseCode' => $citra->courseCode,
             'reason' => ''
