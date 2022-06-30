@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/js/adminlte.js": "/js/adminlte.js",
     "/js/homepage.js": "/js/homepage.js",
+    "/js/firebase.js": "/js/firebase.js",
     "/css/homepage.css": "/css/homepage.css",
     "/css/app.css": "/css/app.css"
 }
